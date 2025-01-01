@@ -1,5 +1,7 @@
+import Fv from "./Contents/Fv";
+
 const Main = () => {
-  return <div>Main</div>;
+  return <Fv />;
 };
 
 export default Main;
