@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import AdobeFont from './components/AdobeFont';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -24,7 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="jp">
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/lsl7nep.css" />
+        <Suspense>
+          <AdobeFont />
+        </Suspense>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

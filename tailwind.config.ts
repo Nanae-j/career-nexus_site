@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mundial: ['mundial, sans-serif'],
+        kintoSans: ['kinto-sans, sans-serif'],
+      },
+      fontWeight: {
+        'mundial-thin': '100',
+        'mundial-light': '300',
+        'mundial-regular': '400',
+        'mundial-demibold': '600',
+        'kintSans-regular': '400',
+        'kintSans-medium': '500',
+      },
       colors: {
         main: {
           green: '#93CA88',
