@@ -17,8 +17,8 @@ const config: Config = {
         "mundial-light": "300",
         "mundial-regular": "400",
         "mundial-demibold": "600",
-        "kintSans-regular": "400",
-        "kintSans-medium": "500",
+        "kintoSans-regular": "400",
+        "kintoSans-medium": "500",
       },
       colors: {
         main: {

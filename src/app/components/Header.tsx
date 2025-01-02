@@ -56,7 +56,13 @@ function Header() {
         <HeaderNav />
 
         <div className="w-[126px]">
-          <Button linkType={"internal"} href={"/contact"} label={"Contact"} />
+          <Button
+            linkType="internal"
+            href="/contact"
+            label="Contact"
+            color="black"
+            fontSize={15}
+          />
         </div>
       </div>
     </header>
