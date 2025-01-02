@@ -1,8 +1,43 @@
+"use client";
 import Image from "next/image";
 import Button from "../Button";
 import clsx from "clsx";
 
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 const About = () => {
+  useGSAP(() => {
+    // **** ABOUTからのアニメーション ****
+    const ABOUT_scrollTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top+=20% top",
+        end: "center top",
+        // markers: true,
+        scrub: 1.5,
+      },
+    });
+
+    ABOUT_scrollTL.to(
+      ".about-img-area",
+      {
+        width: "100%",
+      },
+      "<"
+    ).to(
+      ".about-img-area > img",
+      {
+        filter: "saturate(1)",
+      },
+      "<"
+    );
+    // **** ABOUTからのアニメーション ****
+  });
+
   return (
     <section
       className={clsx("about-section", "bg-main-black pb-[12.5rem] pt-60")}

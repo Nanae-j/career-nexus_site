@@ -11,16 +11,13 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import clsx from "clsx";
 
+gsap.registerPlugin(useGSAP);
+
 export default function Home() {
-  // ****** GSAPのプラグイン登録 *******
-
-  // const useIsomorphicLayoutEffect =
-  //   typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
-    gsap.registerPlugin(useGSAP);
+    // ****** GSAPのプラグイン登録 *******
 
     // ******
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
@@ -38,7 +35,6 @@ export default function Home() {
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
     // *******
   }, []);
-  // ****** GSAPのプラグイン登録 *******
 
   useGSAP(() => {
     const introTL = gsap.timeline();

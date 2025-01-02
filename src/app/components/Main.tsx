@@ -1,36 +1,33 @@
+"use client";
 import About from "./Contents/About";
 import Fv from "./Contents/Fv";
 import Logo from "./Logos/Logo";
+import News from "./Contents/News";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-const Main = () => {
-  useEffect(() => {
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
-  }, []);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+const Main = () => {
   const logoRef = useRef<HTMLDivElement | null>(null);
+  const total = 30 + 30 + 100;
 
   useGSAP(() => {
-    // スクロールアニメーション
+    // FVのLOGOをbodyに追従
     gsap.to(".fv-logo", {
       scrollTrigger: {
-        trigger: "body", // アニメーションをトリガーする要素
-        start: "top top", // アニメーション開始位置
-        end: "bottom bottom", // アニメーション終了位置
-        scrub: 1, // スクロールに合わせてアニメーションを進行
-        markers: true, // 開始・終了のマーカーを表示 (開発用)
+        trigger: "body",
+        start: "top top",
+        end: `bottom-=${total}px bottom`,
+        scrub: 1,
+        markers: true,
         onUpdate: () => {
-          // スクロールアニメーションの進捗を使って何かを処理
-          // const progress = self.progress; // アニメーションの進捗
-          // console.log(`アニメーションの進捗: ${progress * 100}%`);
           const scrollY = window.scrollY;
           const LOGO_HEIGHT: number = logoRef.current?.offsetHeight ?? 0;
 
-          console.log(scrollY - LOGO_HEIGHT * 0.2);
           gsap.to(".fv-logo", {
             y: scrollY - LOGO_HEIGHT * 0.2,
           });
@@ -41,9 +38,9 @@ const Main = () => {
     // **** FVからのアニメーション ****
     const FV_scrollTL = gsap.timeline({
       scrollTrigger: {
-        trigger: ".fv-section", // スクロールトリガーとなる要素
-        start: "top top", // トリガーの開始位置
-        end: "bottom top", // トリガーの終了位置
+        trigger: ".fv-section",
+        start: "top top",
+        end: "bottom top",
         scrub: 1.5,
       },
     });
@@ -76,32 +73,6 @@ const Main = () => {
         "<"
       );
     // **** FVからのアニメーション ****
-
-    // **** ABOUTからのアニメーション ****
-    const ABOUT_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about-section", // スクロールトリガーとなる要素
-        start: "top+=20% top", // トリガーの開始位置
-        end: "center top", // トリガーの終了位置
-        // markers: true,
-        scrub: 1.5,
-      },
-    });
-
-    ABOUT_scrollTL.to(
-      ".about-img-area",
-      {
-        width: "100%",
-      },
-      "<"
-    ).to(
-      ".about-img-area > img",
-      {
-        filter: "saturate(1)",
-      },
-      "<"
-    );
-    // **** ABOUTからのアニメーション ****
   });
 
   return (
@@ -126,6 +97,7 @@ const Main = () => {
       z-index: 2;
       */}
       <About />
+      <News />
     </main>
   );
 };
