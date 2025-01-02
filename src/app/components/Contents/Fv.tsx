@@ -2,12 +2,11 @@ import { TextSplitter } from "../TextSplitter";
 import clsx from "clsx";
 
 const Fv = () => {
-
   return (
     <section
       className={clsx(
         "fv-section",
-        "bg-fvGradient animate-spin-gradient flex h-screen items-center justify-center bg-[rgb(27,196,125)] bg-[length:200%] bg-[25%_center] opacity-0"
+        "flex h-screen animate-spin-gradient items-center justify-center bg-[rgb(27,196,125)] bg-fvGradient bg-[length:200%] bg-[25%_center] opacity-0"
       )}
     >
       <div className="absolute left-1/2 top-0 h-screen w-full -translate-x-1/2 bg-slate-500 opacity-20"></div>
@@ -18,6 +17,7 @@ const Fv = () => {
           "absolute z-[3] text-center font-mundial text-8xl font-mundial-regular leading-[110%] text-white"
         )}
       >
+        <span className="sr-only">Finding careers that satisfy everyone.</span>
         <TextSplitter
           text="Finding careers that satisfy everyone."
           lineBreakWords={["careers"]} // 改行ポイント

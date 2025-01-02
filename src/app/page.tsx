@@ -4,18 +4,41 @@ import { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
 export default function Home() {
+  // Initialize a new Lenis instance for smooth scrolling
+  const lenis = new Lenis();
+
   // ****** GSAPのプラグイン登録 *******
   const useIsomorphicLayoutEffect =
     typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+    // ******
+    // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
+    // *******
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+    });
+
+    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+    gsap.ticker.lagSmoothing(0);
+    // ******
+    // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
+    // *******
   });
   // ****** GSAPのプラグイン登録 *******
 
@@ -35,6 +58,7 @@ export default function Home() {
         x: randomValue,
         y: randomValue,
         rotation: randomValue,
+        filter: "blur(5px)",
         opacity: 0,
         color: () => gsap.utils.random(COLORS),
       })
@@ -43,7 +67,7 @@ export default function Home() {
         y: 0,
         rotation: 0,
         delay: 0.3,
-        duration: 1.5,
+        duration: 1.2,
         ease: "power1.out",
         stagger: 0.03,
       })
@@ -51,6 +75,7 @@ export default function Home() {
         ".fv-heading-word > span",
         {
           opacity: 1,
+          filter: "blur(0px)",
           color: "#fff",
           duration: 1.8,
           ease: "sine.out",
