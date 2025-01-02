@@ -16,20 +16,19 @@ const Main = () => {
   });
 
   useGSAP(() => {
-    const scrollTL = gsap.timeline({
+    // **** FVからのアニメーション ****
+    const FV_scrollTL = gsap.timeline({
       scrollTrigger: {
         trigger: ".fv-section", // スクロールトリガーとなる要素
         start: "top top", // トリガーの開始位置
         end: "bottom top", // トリガーの終了位置
-        markers: true,
-        scrub: 1,
+        scrub: 1.5,
       },
     });
 
-    scrollTL
-      .to(".fv-logo", {
-        scale: 0.63,
-      })
+    FV_scrollTL.to(".fv-logo", {
+      scale: 0.63,
+    })
       .to(".fv-logo", {
         y: "38%",
         ease: "power1.inOut",
@@ -58,6 +57,37 @@ const Main = () => {
         },
         "<"
       );
+    // **** FVからのアニメーション ****
+
+    // **** ABOUTからのアニメーション ****
+    const ABOUT_scrollTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".about-section", // スクロールトリガーとなる要素
+        start: "top+=20% top", // トリガーの開始位置
+        end: "center top", // トリガーの終了位置
+        markers: true,
+        scrub: 1.5,
+      },
+    });
+
+    ABOUT_scrollTL.to(".fv-logo", {
+      y: "138%",
+    })
+      .to(
+        ".about-img-area",
+        {
+          width: "100%",
+        },
+        "<"
+      )
+      .to(
+        ".about-img-area > img",
+        {
+          filter: "saturate(1)",
+        },
+        "<"
+      );
+    // **** ABOUTからのアニメーション ****
   });
 
   return (
@@ -77,6 +107,8 @@ const Main = () => {
       {/*
       ABOUT
       - Text Area
+      z-index: 2;
+      - img
       z-index: 2;
       */}
       <About />
