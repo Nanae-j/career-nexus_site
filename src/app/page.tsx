@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
@@ -12,14 +12,14 @@ import Main from "./components/Main";
 import clsx from "clsx";
 
 export default function Home() {
-  // Initialize a new Lenis instance for smooth scrolling
-  const lenis = new Lenis();
-
   // ****** GSAPのプラグイン登録 *******
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-  useIsomorphicLayoutEffect(() => {
+  // const useIsomorphicLayoutEffect =
+  //   typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+  useEffect(() => {
+    // Initialize a new Lenis instance for smooth scrolling
+    const lenis = new Lenis();
     gsap.registerPlugin(useGSAP);
 
     // ******
@@ -37,7 +37,7 @@ export default function Home() {
     // ******
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
     // *******
-  });
+  }, []);
   // ****** GSAPのプラグイン登録 *******
 
   useGSAP(() => {

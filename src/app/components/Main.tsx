@@ -2,18 +2,15 @@ import About from "./Contents/About";
 import Fv from "./Contents/Fv";
 import Logo from "./Logos/Logo";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 const Main = () => {
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(useGSAP, ScrollTrigger);
-  });
+  }, []);
 
   const logoRef = useRef<HTMLDivElement | null>(null);
 
