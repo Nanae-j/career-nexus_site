@@ -6,7 +6,6 @@ const About = () => {
   return (
     <section
       className={clsx("about-section", "bg-main-black pb-[12.5rem] pt-60")}
-      style={{ marginBottom: "1000px" }}
     >
       <div>
         <div className="relative z-[2] mx-auto mb-[7.5rem] w-[75%] max-w-[1200px]">

@@ -6,7 +6,7 @@ const Fv = () => {
     <section
       className={clsx(
         "fv-section",
-        "flex h-screen animate-spin-gradient items-center justify-center bg-[rgb(27,196,125)] bg-fvGradient bg-[length:200%] bg-[25%_center] opacity-0"
+        "flex h-screen animate-spin-gradient items-center justify-center bg-[rgb(27,196,125)] bg-fvGradient bg-[length:200%] bg-[25%_center]"
       )}
     >
       <div className="absolute left-1/2 top-0 h-screen w-full -translate-x-1/2 bg-slate-500 opacity-20"></div>

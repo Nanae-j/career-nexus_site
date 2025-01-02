@@ -9,6 +9,7 @@ import "lenis/dist/lenis.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import clsx from "clsx";
 
 export default function Home() {
   // Initialize a new Lenis instance for smooth scrolling
@@ -48,7 +49,7 @@ export default function Home() {
       gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
 
     introTL
-      .set(".fv-section", {
+      .set(".content-wrapper", {
         opacity: 1,
       })
       .set(".fv-heading-word > span", {
@@ -96,10 +97,10 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className={clsx("content-wrapper", "opacity-0")}>
       <Header />
       <Main />
       <Footer />
-    </>
+    </div>
   );
 }
