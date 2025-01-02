@@ -1,7 +1,7 @@
-// import Image from 'next/image';
 import Link from "next/link";
 import MenuLogo from "./Logos/MenuLogo";
 import Button from "./Button";
+import clsx from "clsx";
 
 interface NavItem {
   label: string;
@@ -47,8 +47,18 @@ function HeaderNav() {
 
 function Header() {
   return (
-    <header className="fixed left-1/2 top-10 z-[999] w-[90%] -translate-x-1/2 transform rounded-[0.625rem] bg-black bg-opacity-30 text-white">
-      <div className="flex items-center justify-between px-4 py-2 lg:px-10">
+    <header
+      className={clsx(
+        "header",
+        "fixed left-1/2 top-10 z-[999] w-[90%] -translate-x-1/2 transform rounded-[0.625rem] bg-black bg-opacity-30 text-white"
+      )}
+    >
+      <div
+        className={clsx(
+          "header-inner",
+          "flex items-center justify-between px-4 py-2 lg:px-10"
+        )}
+      >
         <div className="w-36 min-w-[130px] max-w-[163px]">
           <MenuLogo />
         </div>
