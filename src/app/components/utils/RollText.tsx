@@ -4,10 +4,13 @@ import clsx from "clsx";
 
 interface rollTextProps {
   title: string;
+  color?:
+    | `#${string & `${Uppercase<string>}${Uppercase<string>}${Uppercase<string>}`}`
+    | `#${Uppercase<string>}`;
   images: string[];
 }
 
-const RollText = ({ title, images }: rollTextProps) => {
+const RollText = ({ title, color = "#FFFFFF", images }: rollTextProps) => {
   const render_ul = () => {
     const elements = [];
     for (let i = 0; i < 2; i++) {
@@ -17,7 +20,12 @@ const RollText = ({ title, images }: rollTextProps) => {
         >
           {images.map((item, index) => (
             <li key={index} className="flex items-center justify-start">
-              <p className="mr-10 font-mundial text-[6.5rem] font-mundial-thin text-white">
+              <p
+                className={clsx(
+                  "mr-10 font-mundial text-[6.5rem] font-mundial-thin",
+                  color === "#FFFFFF" ? `text-white` : `text-[${color}]`
+                )}
+              >
                 {title}
               </p>
               <div className="w-[232px]">

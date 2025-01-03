@@ -51,7 +51,7 @@ const Main = () => {
       scale: 0.63,
     })
       .to(
-        "#out-side-path",
+        ".fv-logo #out-side-path",
         {
           fill: "#9AD5CD",
           fillOpacity: "0.2",
@@ -59,7 +59,7 @@ const Main = () => {
         "<"
       )
       .to(
-        "#middle-path",
+        ".fv-logo #middle-path",
         {
           fill: "#B4D0A9",
           fillOpacity: "0.2",
@@ -67,7 +67,7 @@ const Main = () => {
         "<"
       )
       .to(
-        "#inside-path",
+        ".fv-logo #inside-path",
         {
           fill: "#F8FFAA",
           fillOpacity: 0.18,
@@ -82,7 +82,7 @@ const Main = () => {
       {/* 
       Logo
       z-index: 1; */}
-      <Logo ref={logoRef} />
+      <Logo ref={logoRef} className="fv-logo" />
       {/* 
       FV
       - Noise

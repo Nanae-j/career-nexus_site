@@ -1,13 +1,19 @@
 import clsx from "clsx";
 import { forwardRef } from "react";
 
-const SvgIcon = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
-  (props, ref) => (
+interface SvgIconProps {
+  className?: string;
+}
+
+const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
+  ({ className }, ref) => (
     <div
       ref={ref}
       className={clsx(
-        "fv-logo",
-        "absolute left-1/2 top-0 z-[1] w-full -translate-x-1/2 -translate-y-[20%]"
+        className,
+        className == "fv-logo"
+          ? "absolute left-1/2 top-0 z-[1] w-full -translate-x-1/2 -translate-y-[20%]"
+          : ""
       )}
     >
       <svg
