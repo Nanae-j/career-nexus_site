@@ -59,9 +59,12 @@ function Header() {
           "flex items-center justify-between px-4 py-2 lg:px-10"
         )}
       >
-        <div className="w-36 min-w-[130px] max-w-[163px]">
+        <Link
+          href="/"
+          className="w-36 min-w-[130px] max-w-[163px] duration-700 hover:invert-[1]"
+        >
           <MenuLogo />
-        </div>
+        </Link>
 
         <HeaderNav />
 

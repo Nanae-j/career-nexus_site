@@ -19,7 +19,10 @@ const RollText = ({ title, color = "#FFFFFF", images }: rollTextProps) => {
           className={clsx("animate-text-01", "animate-roll-text flex gap-10")}
         >
           {images.map((item, index) => (
-            <li key={index} className="flex items-center justify-start">
+            <li
+              key={`${title}-${index}`}
+              className="flex items-center justify-start"
+            >
               <p
                 className={clsx(
                   "mr-10 font-mundial text-[6.5rem] font-mundial-thin",
