@@ -14,6 +14,12 @@ import RollText from "../utils/RollText";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Service = () => {
+  const rolltext_images = [
+    "/images/service-roll-img01.jpg",
+    "/images/service-roll-img02.jpg",
+    "/images/service-roll-img03.jpg",
+  ];
+
   useGSAP(() => {
     // **** SERVICEからのアニメーション ****
     const SERVICE_scrollTL = gsap.timeline({
@@ -21,7 +27,7 @@ const Service = () => {
         trigger: ".service-section",
         start: "top+=10% top",
         end: "bottom+=50% top",
-        markers: true,
+        markers: false,
         pin: true,
         scrub: 1,
       },
@@ -43,7 +49,7 @@ const Service = () => {
       <div className="service-section min-h-[800px]">
         <div className={clsx("title-roll-area")}>
           <h2 className="sr-only">Service</h2>
-          <RollText />
+          <RollText title="Service" images={rolltext_images} />
         </div>
         <ul className="relative mx-auto w-[90%] max-w-[1440px]">
           <li
