@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Button from "../Button";
+import Button from "../utils/Button";
 import clsx from "clsx";
 
 import { useGSAP } from "@gsap/react";
@@ -29,7 +29,7 @@ const About = () => {
       },
       "<"
     ).to(
-      ".about-img-area > img",
+      ".about-img-area > div",
       {
         filter: "saturate(1)",
       },
@@ -63,13 +63,15 @@ const About = () => {
             "relative z-[2] mx-auto w-[80%] overflow-hidden rounded-[1.3rem]"
           )}
         >
-          <Image
-            src="/images/about-bg.jpg"
-            alt="キャリアの地図を、共に描く"
-            width={1600}
-            height={900}
-            className="saturate-[0.2] filter"
-          />
+          <div className="relative w-full pb-[56.25%] saturate-[0.2] filter">
+            <Image
+              src="/images/about-bg.jpg"
+              alt="キャリアの地図を、共に描く"
+              width={1600}
+              height={900}
+              className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+            />
+          </div>
         </div>
       </div>
     </section>

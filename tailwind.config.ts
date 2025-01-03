@@ -35,6 +35,7 @@ const config: Config = {
       },
       animation: {
         "spin-gradient": "spin-gradient 20s linear infinite",
+        "roll-text": "roll-text 20s linear infinite",
       },
       keyframes: {
         "spin-gradient": {
@@ -49,6 +50,14 @@ const config: Config = {
           "100%": {
             backgroundPosition: "25% center",
             // backgroundSize: "200%",
+          },
+        },
+        "roll-text": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(-102%)",
           },
         },
       },

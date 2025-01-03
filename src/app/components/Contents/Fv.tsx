@@ -1,4 +1,4 @@
-import { TextSplitter } from "../TextSplitter";
+import { TextSplitter } from "../utils/TextSplitter";
 import clsx from "clsx";
 
 const Fv = () => {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MenuLogo from "./Logos/MenuLogo";
-import Button from "./Button";
+import Button from "./utils/Button";
 import clsx from "clsx";
 
 interface NavItem {

@@ -8,6 +8,8 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import Service from "./Contents/Service";
+import Member from "./Contents/Member";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -23,7 +25,7 @@ const Main = () => {
         start: "top top",
         end: `bottom-=${total}px bottom`,
         scrub: 1,
-        markers: true,
+        markers: false,
         onUpdate: () => {
           const scrollY = window.scrollY;
           const LOGO_HEIGHT: number = logoRef.current?.offsetHeight ?? 0;
@@ -97,7 +99,14 @@ const Main = () => {
       z-index: 2;
       */}
       <About />
+      {/*
+      NEWS
+      - Heading & List Area
+      z-index: 2;
+      */}
       <News />
+      <Service />
+      <Member />
     </main>
   );
 };

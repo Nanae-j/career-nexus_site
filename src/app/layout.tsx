@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
-import type { Metadata } from 'next';
-import './globals.css';
-import AdobeFont from './components/AdobeFont';
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import "./globals.css";
+import AdobeFont from "./components/utils/AdobeFont";
 
 export const metadata: Metadata = {
-  title: 'Career Nexus',
-  description: '- 架空のコーポレートサイト',
+  title: "Career Nexus",
+  description: "- 架空のコーポレートサイト",
 };
 
 export default function RootLayout({

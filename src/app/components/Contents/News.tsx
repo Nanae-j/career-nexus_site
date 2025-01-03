@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MdOutlineArrowForward } from "react-icons/md";
-import Button from "../Button";
+import Button from "../utils/Button";
 import clsx from "clsx";
 
 const News = () => {
