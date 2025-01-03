@@ -10,10 +10,11 @@ import gsap from "gsap";
 import ReceptionistSVG from "../utils/ReceptionistSVG";
 import FaceTimeSVG from "../utils/FaceTimeSVG";
 import RollText from "../utils/RollText";
+import { forwardRef } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Service = () => {
+const Service = forwardRef<HTMLElement | null>((props, ref) => {
   const rolltext_images = [
     "/images/service-roll-img01.jpg",
     "/images/service-roll-img02.jpg",
@@ -45,7 +46,7 @@ const Service = () => {
   });
 
   return (
-    <section className={clsx("bg-main-black pb-32")}>
+    <section ref={ref} className={clsx("bg-main-black pb-32")}>
       <div className="service-section min-h-[800px]">
         <div className={clsx("title-roll-area")}>
           <h2 className="sr-only">Service</h2>
@@ -148,6 +149,6 @@ const Service = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Service;

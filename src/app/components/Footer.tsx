@@ -3,9 +3,14 @@ import { MdArrowForward } from "react-icons/md";
 import MenuLogo from "./Logos/MenuLogo";
 import clsx from "clsx";
 
-const Footer = () => {
+import { forwardRef } from "react";
+
+const Footer = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <footer className="-mt-7 bg-[url('/images/footer-bg.jpg')] bg-cover pb-4 pt-64">
+    <footer
+      ref={ref}
+      className="-mt-7 bg-[url('/images/footer-bg.jpg')] bg-cover pb-4 pt-64"
+    >
       <Link
         href="/contact"
         className={clsx(
@@ -85,6 +90,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
 
 export default Footer;

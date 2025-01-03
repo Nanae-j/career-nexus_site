@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
@@ -14,6 +14,9 @@ import clsx from "clsx";
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
+  const footerRef = useRef(null);
+  const mainRef = useRef(null);
+
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
@@ -90,13 +93,77 @@ export default function Home() {
         },
         "-=0.2"
       );
+
+    const footer_height = footerRef.current?.offsetHeight;
+    const service_height = mainRef.current?.serviceRef?.offsetHeight;
+    const member_height = mainRef.current?.memberRef?.offsetHeight;
+
+    const end_height = footer_height + service_height + member_height;
+
+    // FVのLOGOをbodyに追従
+    gsap.to(".fv-logo", {
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: `bottom-=${end_height + end_height * 0.28}px bottom`,
+        scrub: 1,
+        markers: false,
+        onUpdate: () => {
+          const scrollY = window.scrollY;
+          const LOGO_HEIGHT: number = mainRef.current?.logoRef.offsetHeight;
+
+          gsap.to(".fv-logo", {
+            y: scrollY - LOGO_HEIGHT * 0.2,
+          });
+        },
+      },
+    });
+
+    // **** FVからのアニメーション ****
+    const FV_scrollTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".fv-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5,
+      },
+    });
+
+    FV_scrollTL.to(".fv-logo", {
+      scale: 0.63,
+    })
+      .to(
+        ".fv-logo #out-side-path",
+        {
+          fill: "#9AD5CD",
+          fillOpacity: "0.2",
+        },
+        "<"
+      )
+      .to(
+        ".fv-logo #middle-path",
+        {
+          fill: "#B4D0A9",
+          fillOpacity: "0.2",
+        },
+        "<"
+      )
+      .to(
+        ".fv-logo #inside-path",
+        {
+          fill: "#F8FFAA",
+          fillOpacity: 0.18,
+        },
+        "<"
+      );
+    // **** FVからのアニメーション ****
   });
 
   return (
     <div className={clsx("content-wrapper", "opacity-0")}>
       <Header />
-      <Main />
-      <Footer />
+      <Main ref={mainRef} />
+      <Footer ref={footerRef} />
     </div>
   );
 }

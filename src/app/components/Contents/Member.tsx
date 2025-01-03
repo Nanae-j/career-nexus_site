@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import RollText from "../utils/RollText";
 import { members } from "../utils/MemberList";
@@ -8,10 +10,11 @@ import Button from "../utils/Button";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import { forwardRef } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Member = () => {
+const Member = forwardRef<HTMLElement | null>((props, ref) => {
   const rolltext_images = [
     "/images/member-roll-img01.jpg",
     "/images/member-roll-img02.jpg",
@@ -72,6 +75,7 @@ const Member = () => {
 
   return (
     <section
+      ref={ref}
       className={clsx(
         "member-section",
         "relative z-[2] -mt-9 rounded-[1.9rem] bg-white py-[12.5rem]"
@@ -123,6 +127,6 @@ const Member = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Member;

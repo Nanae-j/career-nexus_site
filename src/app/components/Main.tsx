@@ -4,78 +4,33 @@ import Fv from "./Contents/Fv";
 import Logo from "./Logos/Logo";
 import News from "./Contents/News";
 
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import gsap from "gsap";
+import { useRef, forwardRef, useImperativeHandle } from "react";
+// import { useGSAP } from "@gsap/react";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import gsap from "gsap";
 import Service from "./Contents/Service";
 import Member from "./Contents/Member";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+// gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Main = () => {
+// forwardRef の型をカスタム型として定義
+type MainRef = {
+  memberRef: HTMLElement | null;
+  serviceRef: HTMLElement | null;
+  logoRef: HTMLDivElement | null;
+};
+
+const Main = forwardRef<MainRef>((props, ref) => {
   const logoRef = useRef<HTMLDivElement | null>(null);
-  const total = 30 + 30 + 100;
+  const memberRef = useRef<HTMLElement | null>(null);
+  const serviceRef = useRef<HTMLElement | null>(null);
 
-  useGSAP(() => {
-    // FVのLOGOをbodyに追従
-    gsap.to(".fv-logo", {
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: `bottom-=${total}px bottom`,
-        scrub: 1,
-        markers: false,
-        onUpdate: () => {
-          const scrollY = window.scrollY;
-          const LOGO_HEIGHT: number = logoRef.current?.offsetHeight ?? 0;
-
-          gsap.to(".fv-logo", {
-            y: scrollY - LOGO_HEIGHT * 0.2,
-          });
-        },
-      },
-    });
-
-    // **** FVからのアニメーション ****
-    const FV_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".fv-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
-
-    FV_scrollTL.to(".fv-logo", {
-      scale: 0.63,
-    })
-      .to(
-        ".fv-logo #out-side-path",
-        {
-          fill: "#9AD5CD",
-          fillOpacity: "0.2",
-        },
-        "<"
-      )
-      .to(
-        ".fv-logo #middle-path",
-        {
-          fill: "#B4D0A9",
-          fillOpacity: "0.2",
-        },
-        "<"
-      )
-      .to(
-        ".fv-logo #inside-path",
-        {
-          fill: "#F8FFAA",
-          fillOpacity: 0.18,
-        },
-        "<"
-      );
-    // **** FVからのアニメーション ****
-  });
+  // useImperativeHandleでMainの参照にカスタムオブジェクトを公開
+  useImperativeHandle(ref, () => ({
+    memberRef: memberRef.current,
+    serviceRef: serviceRef.current,
+    logoRef: logoRef.current,
+  }));
 
   return (
     <main className="relative">
@@ -105,10 +60,10 @@ const Main = () => {
       z-index: 2;
       */}
       <News />
-      <Service />
-      <Member />
+      <Service ref={serviceRef} />
+      <Member ref={memberRef} />
     </main>
   );
-};
+});
 
 export default Main;
