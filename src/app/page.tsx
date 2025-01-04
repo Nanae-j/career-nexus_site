@@ -10,12 +10,13 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import clsx from "clsx";
+import { MainRef } from "./components/types";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
-  const footerRef = useRef(null);
-  const mainRef = useRef(null);
+  const footerRef = useRef<HTMLElement | null>(null);
+  const mainRef = useRef<MainRef | null>(null);
 
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
@@ -98,7 +99,13 @@ export default function Home() {
     const service_height = mainRef.current?.serviceRef?.offsetHeight;
     const member_height = mainRef.current?.memberRef?.offsetHeight;
 
-    const end_height = footer_height + service_height + member_height;
+    let end_height: number = 0;
+
+    if (footer_height && service_height && member_height) {
+      end_height = footer_height + service_height + member_height;
+    } else {
+      console.error("end_hight is null or undefined.");
+    }
 
     // FVのLOGOをbodyに追従
     gsap.to(".fv-logo", {
@@ -110,7 +117,12 @@ export default function Home() {
         markers: false,
         onUpdate: () => {
           const scrollY = window.scrollY;
-          const LOGO_HEIGHT: number = mainRef.current?.logoRef.offsetHeight;
+          let LOGO_HEIGHT: number = 0;
+          if (mainRef.current?.logoRef) {
+            LOGO_HEIGHT = mainRef.current.logoRef.offsetHeight;
+          } else {
+            console.error("LOGO_HEIGHT is null or undefined.");
+          }
 
           gsap.to(".fv-logo", {
             y: scrollY - LOGO_HEIGHT * 0.2,
