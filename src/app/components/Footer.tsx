@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import { forwardRef } from "react";
 
-const Footer = forwardRef<HTMLDivElement>((props, ref) => {
+const Footer = forwardRef<HTMLElement | null>((props, ref) => {
   return (
     <footer
       ref={ref}

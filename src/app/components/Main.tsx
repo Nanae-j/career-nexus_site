@@ -10,17 +10,13 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 // import gsap from "gsap";
 import Service from "./Contents/Service";
 import Member from "./Contents/Member";
+import { MainRef } from "./types";
 
 // gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // forwardRef の型をカスタム型として定義
-type MainRef = {
-  memberRef: HTMLElement | null;
-  serviceRef: HTMLElement | null;
-  logoRef: HTMLDivElement | null;
-};
 
-const Main = forwardRef<MainRef>((props, ref) => {
+const Main = forwardRef<MainRef | null>((props, ref) => {
   const logoRef = useRef<HTMLDivElement | null>(null);
   const memberRef = useRef<HTMLElement | null>(null);
   const serviceRef = useRef<HTMLElement | null>(null);
