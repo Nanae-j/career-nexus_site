@@ -16,11 +16,12 @@ const RollText = ({ title, color = "#FFFFFF", images }: rollTextProps) => {
     for (let i = 0; i < 2; i++) {
       elements.push(
         <ul
+          key={`${title}-${i}`}
           className={clsx("animate-text-01", "animate-roll-text flex gap-10")}
         >
           {images.map((item, index) => (
             <li
-              key={`${title}-${index}`}
+              key={`${title}-${i}-${index}`}
               className="flex items-center justify-start"
             >
               <p
