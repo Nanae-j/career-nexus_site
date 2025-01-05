@@ -4,6 +4,7 @@
 
 html {
   visibility: hidden;
+  overflow-x: hidden;
 }
 html.wf-active {
   visibility: visible;
