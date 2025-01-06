@@ -46,7 +46,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
   });
 
   return (
-    <section ref={ref} className={clsx("bg-main-black pb-32")}>
+    <section ref={ref} className={clsx("bg-main-black pb-[20%]")}>
       <div className="service-section min-h-[800px]">
         <div className={clsx("title-roll-area")}>
           <h2 className="sr-only">Service</h2>
@@ -60,7 +60,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-main-green p-20"
               )}
             >
-              <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
               <p className="absolute left-10 top-10 z-[2] font-mundial text-base font-mundial-demibold text-white">
                 Service.01
               </p>
@@ -78,7 +78,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 </div>
 
                 <div className="relative w-[53%]">
-                  <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white pb-[76.4705%]">
+                  <div className="absolute-center absolute w-full rounded-2xl bg-white pb-[76.4705%]">
                     <CodingSVG />
                   </div>
                 </div>
@@ -90,7 +90,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#80AFC6] p-20"
               )}
             >
-              <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
               <p className="absolute left-10 top-10 z-[2] font-mundial text-base font-mundial-demibold text-white">
                 Service.02
               </p>
@@ -108,7 +108,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 </div>
 
                 <div className="relative w-[53%]">
-                  <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white pb-[76.4705%]">
+                  <div className="absolute-center absolute w-full rounded-2xl bg-white pb-[76.4705%]">
                     <ReceptionistSVG />
                   </div>
                 </div>
@@ -120,7 +120,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#888CCA] p-20"
               )}
             >
-              <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
               <p className="absolute left-10 top-10 z-[2] font-mundial text-base font-mundial-demibold text-white">
                 Service.03
               </p>
@@ -138,7 +138,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 </div>
 
                 <div className="relative w-[53%]">
-                  <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white pb-[76.4705%]">
+                  <div className="absolute-center absolute w-full rounded-2xl bg-white pb-[76.4705%]">
                     <FaceTimeSVG />
                   </div>
                 </div>

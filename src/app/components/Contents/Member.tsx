@@ -87,7 +87,7 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
           <Logo className="member-logo" />
         </div>
         <div className="relative w-full pb-[57%]">
-          <div className="bg-memberFilter absolute left-1/2 top-1/2 z-[2] w-full -translate-x-1/2 -translate-y-1/2 pb-[57%] opacity-80"></div>
+          <div className="bg-memberFilter absolute-center absolute z-[2] w-full pb-[57%] opacity-80"></div>
           <div className="absolute -right-[8%] left-auto top-1/2 ml-auto w-[75%] -translate-y-1/2 -rotate-12">
             <ul
               className={clsx(
@@ -103,7 +103,7 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
                       alt=""
                       width={284}
                       height={379}
-                      className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                      className="absolute-center absolute w-full"
                     />
                   </div>
                 </li>

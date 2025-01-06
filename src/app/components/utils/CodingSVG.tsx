@@ -3,7 +3,7 @@ const SvgIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 424 424"
     fill="none"
-    className="absolute left-1/2 top-1/2 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2"
+    className="absolute-center absolute h-[90%] w-[90%]"
   >
     <path fill="#142A6F" d="M202 57.2H22v180h180z"></path>
     <path fill="#93CA88" d="M132.4 136.2H74.7v6.4h57.7z"></path>

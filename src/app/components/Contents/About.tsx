@@ -69,7 +69,7 @@ const About = () => {
               alt="キャリアの地図を、共に描く"
               width={1600}
               height={900}
-              className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+              className="absolute-center absolute w-full"
             />
           </div>
         </div>
