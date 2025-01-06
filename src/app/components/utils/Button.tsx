@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import Link from "next/link";
+
+import clsx from "clsx";
 
 interface ButtonContentProps {
   label: string;
@@ -12,7 +13,8 @@ const ButtonContent = ({ label, color, fontSize }: ButtonContentProps) => {
     <div className="relative overflow-hidden">
       <span
         className={clsx(
-          "pointer-events-none relative z-10 ml-6 inline-block -translate-y-[4%] py-1.5 font-mundial font-mundial-light text-black delay-100 duration-300 group-hover:text-white",
+          "pointer-events-none relative z-10 ml-6 inline-block -translate-y-[4%] py-1.5 font-mundial font-mundial-light text-black delay-100 duration-300",
+          "group-hover:text-white",
           fontSize === 18 ? "text-lg" : "text-[0.95rem]"
         )}
       >
@@ -20,7 +22,8 @@ const ButtonContent = ({ label, color, fontSize }: ButtonContentProps) => {
       </span>
       <span
         className={clsx(
-          "ease-buttonHover absolute right-0 top-1/2 h-[600px] w-[600px] origin-center -translate-y-1/2 translate-x-[47%] scale-[0.01] rounded-[50%] duration-300 group-hover:scale-100",
+          "absolute right-0 top-1/2 h-[600px] w-[600px] origin-center -translate-y-1/2 translate-x-[47%] scale-[0.01] rounded-[50%] duration-300 ease-buttonHover",
+          "group-hover:scale-100",
           color === "green" ? "bg-main-green" : "bg-black"
         )}
       ></span>

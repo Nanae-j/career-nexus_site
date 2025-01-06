@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import clsx from "clsx";
 
-interface rollTextProps {
+interface RollTextProps {
   title: string;
   color?:
     | `#${string & `${Uppercase<string>}${Uppercase<string>}${Uppercase<string>}`}`
@@ -10,7 +10,7 @@ interface rollTextProps {
   images: string[];
 }
 
-const RollText = ({ title, color = "#FFFFFF", images }: rollTextProps) => {
+const RollText = ({ title, color = "#FFFFFF", images }: RollTextProps) => {
   const render_ul = () => {
     const elements = [];
     for (let i = 0; i < 2; i++) {

@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { forwardRef } from "react";
+
 import { MdArrowForward } from "react-icons/md";
-import MenuLogo from "./Logos/MenuLogo";
 import clsx from "clsx";
 
-import { forwardRef } from "react";
+import MenuLogo from "./Logos/MenuLogo";
+import navItems from "./utils/NavItems";
 
 const Footer = forwardRef<HTMLElement | null>((props, ref) => {
   return (
@@ -18,10 +20,20 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
           "mx-auto mb-40 flex w-[70%] items-center justify-between"
         )}
       >
-        <span className="font-mundial text-[5rem] font-mundial-thin text-white duration-500 group-hover:text-main-green">
+        <span
+          className={clsx(
+            "font-mundial text-[5rem] font-mundial-thin text-white duration-500",
+            "group-hover:text-main-green"
+          )}
+        >
           Contact
         </span>
-        <span className="h-16 w-16 text-white duration-500 group-hover:text-main-green">
+        <span
+          className={clsx(
+            "h-16 w-16 text-white duration-500",
+            "group-hover:text-main-green"
+          )}
+        >
           <MdArrowForward className="h-full w-full" />
         </span>
       </Link>
@@ -30,45 +42,23 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
         <div className="mx-auto flex w-[71%] items-start justify-between gap-x-7">
           <Link
             href="/"
-            className="block w-[209px] duration-700 hover:invert-[1]"
+            className={clsx("block w-[209px] duration-700", "hover:invert-[1]")}
           >
             <MenuLogo />
           </Link>
 
           <div className="mb-[8.8rem] flex-grow">
             <ul className="grid grid-cols-4 grid-rows-1 text-right font-mundial text-lg font-mundial-light tracking-wide text-white">
-              <li>
-                <Link
-                  href="/about"
-                  className="duration-500 hover:text-main-green"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/service"
-                  className="duration-500 hover:text-main-green"
-                >
-                  Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/member"
-                  className="duration-500 hover:text-main-green"
-                >
-                  Member
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/news"
-                  className="duration-500 hover:text-main-green"
-                >
-                  News
-                </Link>
-              </li>
+              {navItems.map(({ label, href }, index) => (
+                <li key={index}>
+                  <Link
+                    href={href}
+                    className={clsx("duration-500", "hover:text-main-green")}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -81,7 +71,10 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
 
             <Link
               href="/privacy"
-              className="font-kintoSans text-xs font-kintoSans-regular tracking-wide duration-500 hover:text-main-green"
+              className={clsx(
+                "font-kintoSans text-xs font-kintoSans-regular tracking-wide duration-500",
+                "hover:text-main-green"
+              )}
             >
               個人情報保護方針
             </Link>

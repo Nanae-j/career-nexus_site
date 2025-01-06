@@ -1,49 +1,10 @@
 import Link from "next/link";
-import MenuLogo from "./Logos/MenuLogo";
-import Button from "./utils/Button";
+
 import clsx from "clsx";
 
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-function HeaderNav() {
-  const navItem: NavItem[] = [
-    {
-      label: "About Us",
-      href: "/about",
-    },
-    {
-      label: "Service",
-      href: "/service",
-    },
-    {
-      label: "Company",
-      href: "/company",
-    },
-    {
-      label: "Member",
-      href: "/member",
-    },
-    {
-      label: "News",
-      href: "/news",
-    },
-  ];
-
-  return (
-    <nav className="mx-1 flex-grow font-mundial text-sm font-mundial-demibold">
-      <ul className="flex items-center justify-center">
-        {navItem.map((item, index) => (
-          <li key={index} className="px-[2.5%] py-5">
-            <Link href={item.href}>{item.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
+import MenuLogo from "./Logos/MenuLogo";
+import Button from "./utils/Button";
+import navItems from "./utils/NavItems";
 
 function Header() {
   return (
@@ -56,17 +17,29 @@ function Header() {
       <div
         className={clsx(
           "header-inner",
-          "flex items-center justify-between px-4 py-2 lg:px-10"
+          "flex items-center justify-between px-4 py-2",
+          "lg:px-10"
         )}
       >
         <Link
           href="/"
-          className="w-36 min-w-[130px] max-w-[163px] duration-700 hover:invert-[1]"
+          className={clsx(
+            "w-36 min-w-[130px] max-w-[163px] duration-700",
+            "hover:invert-[1]"
+          )}
         >
           <MenuLogo />
         </Link>
 
-        <HeaderNav />
+        <nav className="mx-1 flex-grow font-mundial text-sm font-mundial-demibold">
+          <ul className="flex items-center justify-center">
+            {navItems.map(({ label, href }, index) => (
+              <li key={index} className="px-[2.5%] py-5">
+                <Link href={href}>{label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className="w-[126px]">
           <Button

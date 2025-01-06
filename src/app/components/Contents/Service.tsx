@@ -1,16 +1,17 @@
 "use client";
 
-import Button from "../utils/Button";
-import CodingSVG from "../utils/CodingSVG";
-import clsx from "clsx";
+import { forwardRef } from "react";
 
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import clsx from "clsx";
+
+import Button from "../utils/Button";
+import CodingSVG from "../utils/CodingSVG";
 import ReceptionistSVG from "../utils/ReceptionistSVG";
 import FaceTimeSVG from "../utils/FaceTimeSVG";
 import RollText from "../utils/RollText";
-import { forwardRef } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

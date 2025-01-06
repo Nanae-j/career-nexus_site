@@ -1,11 +1,13 @@
 "use client";
-import Image from "next/image";
-import Button from "../utils/Button";
-import clsx from "clsx";
 
+import Image from "next/image";
+
+import clsx from "clsx";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+
+import Button from "../utils/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -49,7 +51,12 @@ const About = () => {
             <br className="md:hidden" />
             共に描く
           </h2>
-          <p className="mb-16 font-kintoSans font-kintoSans-medium leading-[240%] tracking-wider text-white md:w-[48%] md:min-w-[520px]">
+          <p
+            className={clsx(
+              "mb-16 font-kintoSans font-kintoSans-medium leading-[240%] tracking-wider text-white",
+              "md:w-[48%] md:min-w-[520px]"
+            )}
+          >
             私たちは、人材と企業をつなぐパートナーです。一人ひとりの可能性を最大限に引き出し、新しい働き方や挑戦の場を提供しています。個性や強みを活かせる環境で、自分らしく輝けるキャリアを。夢や目標に向かって一歩を踏み出すとき、私たちがそばで支えます。『あなたらしいキャリア』を一緒に見つけるお手伝いをさせてください。
           </p>
           <div className="w-[166px]">

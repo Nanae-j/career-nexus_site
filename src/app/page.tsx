@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
+import clsx from "clsx";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import clsx from "clsx";
+
 import { MainRef } from "./components/types";
 
 gsap.registerPlugin(useGSAP);

@@ -1,16 +1,17 @@
 "use client";
 
-import clsx from "clsx";
-import RollText from "../utils/RollText";
-import { members } from "../utils/MemberList";
+import { forwardRef } from "react";
 import Image from "next/image";
-import Logo from "../Logos/Logo";
-import Button from "../utils/Button";
 
+import clsx from "clsx";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { forwardRef } from "react";
+
+import RollText from "../utils/RollText";
+import { members } from "../utils/MemberList";
+import Logo from "../Logos/Logo";
+import Button from "../utils/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
