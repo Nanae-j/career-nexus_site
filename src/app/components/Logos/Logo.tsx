@@ -13,7 +13,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
       className={clsx(
         className,
         className == "fv-logo"
-          ? "absolute left-1/2 top-0 z-[1] w-full -translate-x-1/2"
+          ? "fixed left-1/2 top-0 z-[1] w-full -translate-x-1/2"
           : ""
       )}
     >

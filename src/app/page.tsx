@@ -7,23 +7,18 @@ import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
-// import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
 import { MainRef } from "./components/types";
-// import { theme } from "./components/theme/theme";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const footerRef = useRef<HTMLElement | null>(null);
   const mainRef = useRef<MainRef | null>(null);
-
-  // const mobileDisplay = useMediaQuery(theme.breakpoints.down("lg"));
-  // // const [isMobile, setIsMobile] = useState(mobileDisplay);
 
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
@@ -61,6 +56,7 @@ export default function Home() {
           const INTRO_TL = gsap.timeline();
           const WORD_ANIMATE_RANGE = 30;
           const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
+          const LOGO = mainRef.current?.logoRef;
           const FOOTER_HEIGHT = footerRef.current?.offsetHeight;
           const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight;
           const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight;
@@ -142,13 +138,31 @@ export default function Home() {
 
           // **** FVのロゴをbodyに追従 ****
           gsap.to(".fv-logo", {
+            onComplete: () => {
+              // アニメーション終了地点でfixedの解除
+              const scrollY = window.scrollY;
+
+              if (mainRef.current?.logoRef) {
+                logo_height = mainRef.current.logoRef.offsetHeight;
+              } else {
+                console.error("logo_height is null or undefined.");
+              }
+
+              if (LOGO) {
+                LOGO.style.position = "absolute";
+              }
+              gsap.set(".fv-logo", {
+                top: scrollY - logo_height / 2,
+              });
+            },
             scrollTrigger: {
               trigger: "body",
               start: "top top",
               end: `bottom-=${end_height + end_height * 0.28}px bottom`,
               scrub: 1,
               markers: false,
-              onUpdate: () => {
+              onEnterBack: () => {
+                // アニメーション終了地点からの再開
                 const scrollY = window.scrollY;
 
                 if (mainRef.current?.logoRef) {
@@ -157,9 +171,9 @@ export default function Home() {
                   console.error("logo_height is null or undefined.");
                 }
 
-                gsap.to(".fv-logo", {
-                  top: logo_height / 2,
-                  y: scrollY,
+                gsap.set(".fv-logo", {
+                  top: fv_height / 2 - logo_height / 2,
+                  position: "fixed",
                 });
               },
             },
