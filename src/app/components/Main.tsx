@@ -16,12 +16,14 @@ const Main = forwardRef<MainRef | null>((props, ref) => {
   const logoRef = useRef<HTMLDivElement | null>(null);
   const memberRef = useRef<HTMLElement | null>(null);
   const serviceRef = useRef<HTMLElement | null>(null);
+  const fvRef = useRef<HTMLElement | null>(null);
 
   // useImperativeHandleでMainの参照にカスタムオブジェクトを公開
   useImperativeHandle(ref, () => ({
     memberRef: memberRef.current,
     serviceRef: serviceRef.current,
     logoRef: logoRef.current,
+    fvRef: fvRef.current,
   }));
 
   return (
@@ -37,7 +39,7 @@ const Main = forwardRef<MainRef | null>((props, ref) => {
       - heading1
       z-index: 3;
       */}
-      <Fv />
+      <Fv ref={fvRef} />
       {/*
       ABOUT
       - Text Area

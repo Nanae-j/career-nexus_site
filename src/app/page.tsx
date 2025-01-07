@@ -7,18 +7,23 @@ import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
+// import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
 import { MainRef } from "./components/types";
+// import { theme } from "./components/theme/theme";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const footerRef = useRef<HTMLElement | null>(null);
   const mainRef = useRef<MainRef | null>(null);
+
+  // const mobileDisplay = useMediaQuery(theme.breakpoints.down("lg"));
+  // // const [isMobile, setIsMobile] = useState(mobileDisplay);
 
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
@@ -43,134 +48,166 @@ export default function Home() {
   }, []);
 
   useGSAP(() => {
-    const introTL = gsap.timeline();
-    const WORD_ANIMATE_RANGE = 30;
-    const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
+    const mm = gsap.matchMedia();
 
-    const randomValue = () =>
-      gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
+    mm.add(
+      {
+        small: "(max-width: 1024px)",
+        large: "(min-width: 1025px)",
+      },
+      (ctx) => {
+        if (ctx.conditions) {
+          const { small } = ctx.conditions;
+          const introTL = gsap.timeline();
+          const WORD_ANIMATE_RANGE = 30;
+          const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
+          const footer_height = footerRef.current?.offsetHeight;
+          const service_height = mainRef.current?.serviceRef?.offsetHeight;
+          const member_height = mainRef.current?.memberRef?.offsetHeight;
 
-    introTL
-      .set(".content-wrapper", {
-        opacity: 1,
-      })
-      .set(".fv-heading-word > span", {
-        x: randomValue,
-        y: randomValue,
-        rotation: randomValue,
-        filter: "blur(5px)",
-        opacity: 0,
-        color: () => gsap.utils.random(COLORS),
-      })
-      .to(".fv-heading-word > span", {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        delay: 0.3,
-        duration: 1.2,
-        ease: "power1.out",
-        stagger: 0.03,
-      })
-      .to(
-        ".fv-heading-word > span",
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          color: "#fff",
-          duration: 1.8,
-          ease: "sine.out",
-          stagger: 0.03,
-        },
-        "<"
-      )
-      .from(".header", {
-        y: -10,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power4.out",
-      })
-      .from(
-        ".header-inner",
-        {
-          opacity: 0,
-        },
-        "-=0.2"
-      );
-
-    const footer_height = footerRef.current?.offsetHeight;
-    const service_height = mainRef.current?.serviceRef?.offsetHeight;
-    const member_height = mainRef.current?.memberRef?.offsetHeight;
-
-    let end_height: number = 0;
-
-    if (footer_height && service_height && member_height) {
-      end_height = footer_height + service_height + member_height;
-    } else {
-      console.error("end_hight is null or undefined.");
-    }
-
-    // FVのLOGOをbodyに追従
-    gsap.to(".fv-logo", {
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: `bottom-=${end_height + end_height * 0.28}px bottom`,
-        scrub: 1,
-        markers: false,
-        onUpdate: () => {
-          const scrollY = window.scrollY;
+          let FV_HEIGHT = 0;
           let LOGO_HEIGHT: number = 0;
+          let end_height: number = 0;
+
+          if (footer_height && service_height && member_height) {
+            end_height = footer_height + service_height + member_height;
+          } else {
+            console.error("end_hight is null or undefined.");
+          }
+
+          if (mainRef.current?.fvRef) {
+            FV_HEIGHT = mainRef.current?.fvRef?.offsetHeight;
+          } else {
+            console.error("FV_HEIGHT is null or undefined.");
+          }
+
           if (mainRef.current?.logoRef) {
             LOGO_HEIGHT = mainRef.current.logoRef.offsetHeight;
           } else {
             console.error("LOGO_HEIGHT is null or undefined.");
           }
 
-          gsap.to(".fv-logo", {
-            y: scrollY - LOGO_HEIGHT * 0.2,
+          const randomValue = () =>
+            gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
+
+          introTL
+            .set(".content-wrapper", {
+              opacity: 1,
+            })
+            .set(".fv-heading-word > span", {
+              x: randomValue,
+              y: randomValue,
+              rotation: randomValue,
+              filter: "blur(5px)",
+              opacity: 0,
+              color: () => gsap.utils.random(COLORS),
+            })
+            .to(".fv-heading-word > span", {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              delay: 0.3,
+              duration: 1.2,
+              ease: "power1.out",
+              stagger: 0.03,
+            })
+            .to(
+              ".fv-heading-word > span",
+              {
+                opacity: 1,
+                filter: "blur(0px)",
+                color: "#fff",
+                duration: 1.8,
+                ease: "sine.out",
+                stagger: 0.03,
+              },
+              "<"
+            )
+            .from(".header", {
+              y: -10,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power4.out",
+            })
+            .from(
+              ".header-inner",
+              {
+                opacity: 0,
+              },
+              "-=0.2"
+            );
+
+          gsap.set(".fv-logo", {
+            top: FV_HEIGHT / 2 - LOGO_HEIGHT / 2,
           });
-        },
-      },
-    });
 
-    // **** FVからのアニメーション ****
-    const FV_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".fv-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
+          // **** FVのロゴをbodyに追従 ****
+          gsap.to(".fv-logo", {
+            scrollTrigger: {
+              trigger: "body",
+              start: "top top",
+              end: `bottom-=${end_height + end_height * 0.28}px bottom`,
+              scrub: 1,
+              markers: false,
+              onUpdate: () => {
+                const scrollY = window.scrollY;
 
-    FV_scrollTL.to(".fv-logo", {
-      scale: 0.63,
-    })
-      .to(
-        ".fv-logo #out-side-path",
-        {
-          fill: "#9AD5CD",
-          fillOpacity: "0.2",
-        },
-        "<"
-      )
-      .to(
-        ".fv-logo #middle-path",
-        {
-          fill: "#B4D0A9",
-          fillOpacity: "0.2",
-        },
-        "<"
-      )
-      .to(
-        ".fv-logo #inside-path",
-        {
-          fill: "#F8FFAA",
-          fillOpacity: 0.18,
-        },
-        "<"
-      );
-    // **** FVからのアニメーション ****
+                if (mainRef.current?.logoRef) {
+                  LOGO_HEIGHT = mainRef.current.logoRef.offsetHeight;
+                } else {
+                  console.error("LOGO_HEIGHT is null or undefined.");
+                }
+
+                gsap.to(".fv-logo", {
+                  top: LOGO_HEIGHT / 2,
+                  y: scrollY,
+                });
+              },
+            },
+          });
+          // **** FVのロゴをbodyに追従 ****
+
+          // **** FVからのアニメーション ****
+          const FV_scrollTL = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".fv-section",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1.5,
+            },
+          });
+
+          FV_scrollTL.to(".fv-logo", {
+            scale: 0.63,
+          })
+            .to(
+              ".fv-logo #out-side-path",
+              {
+                fill: "#9AD5CD",
+                fillOpacity: "0.2",
+              },
+              "<"
+            )
+            .to(
+              ".fv-logo #middle-path",
+              {
+                fill: "#B4D0A9",
+                fillOpacity: "0.2",
+              },
+              "<"
+            )
+            .to(
+              ".fv-logo #inside-path",
+              {
+                fill: "#F8FFAA",
+                fillOpacity: 0.18,
+              },
+              "<"
+            );
+          // **** FVからのアニメーション ****
+        }
+      }
+    );
   });
 
   return (
