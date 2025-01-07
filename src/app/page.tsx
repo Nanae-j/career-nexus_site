@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -21,6 +21,15 @@ export default function Home() {
   const mainRef = useRef<MainRef | null>(null);
 
   const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  const [footerHeightState, setFooterHeightState] = useState<number>(0);
+  const [serviceHeightState, setServiceHeightState] = useState<number>(0);
+  const [memberHeightState, setMemberHeightState] = useState<number>(0);
+  const [fvHeightState, setFvHeightState] = useState<number>(0);
+  const [logoHeightState, setLogoHeightState] = useState<number>(0);
+
+  let end_height = 0;
 
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
@@ -48,92 +57,71 @@ export default function Home() {
     // リサイズイベントのリスナーを設定
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      updateAnimation();
+      setWindowHeight(window.innerHeight);
+      // setFooterHeightState(footerRef.current?.offsetHeight as number);
+      // setServiceHeightState(
+      //   mainRef.current?.serviceRef?.offsetHeight as number
+      // );
+      // setMemberHeightState(mainRef.current?.memberRef?.offsetHeight as number);
+      // setFvHeightState(mainRef.current?.fvRef?.offsetHeight as number);
+      // setLogoHeightState(mainRef.current?.logoRef?.offsetHeight as number);
+      // updateAnimation();
+
+      // console.log(fvHeightState);
     };
 
     // アニメーションをリサイズ後に再計算する関数
-    const updateAnimation = () => {
-      const LOGO_SCROLL_TL = gsap.timeline();
+    // const updateAnimation = () => {
+    //   const LOGO_SCROLL_TL = gsap.timeline();
 
-      const fv_height = mainRef.current?.fvRef?.offsetHeight ?? 0;
-      const logo_height = mainRef.current?.logoRef?.offsetHeight ?? 0;
-      const FOOTER_HEIGHT = footerRef.current?.offsetHeight ?? 0;
-      const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight ?? 0;
-      const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight ?? 0;
+    //   if (footerHeightState && serviceHeightState && memberHeightState) {
+    //     end_height = footerHeightState + serviceHeightState + memberHeightState;
+    //   }
 
-      let end_height = 0;
-
-      if (FOOTER_HEIGHT && SERVICE_HEIGHT && MEMBER_HEIGHT) {
-        end_height = FOOTER_HEIGHT + SERVICE_HEIGHT + MEMBER_HEIGHT;
-      }
-
-      if (fv_height && logo_height) {
-        LOGO_SCROLL_TL.set(".fv-logo", {
-          top: fv_height / 2 - logo_height / 2,
-        }).to(".fv-logo", {
-          scrollTrigger: {
-            trigger: "body",
-            start: "top top",
-            end: `bottom-=${end_height + end_height * 0.35}px bottom`,
-            scrub: 1,
-            markers: false,
-          },
-        });
-      }
-    };
+    //   if (fvHeightState && logoHeightState) {
+    //     LOGO_SCROLL_TL.set(".fv-logo", {
+    //       top: fvHeightState / 2 - logoHeightState / 2,
+    //     }).to(".fv-logo", {
+    //       scrollTrigger: {
+    //         trigger: "body",
+    //         start: "top top",
+    //         end: `bottom-=${end_height + end_height * 0.35}px bottom`,
+    //         scrub: 1,
+    //         markers: false,
+    //       },
+    //     });
+    //   }
+    // };
 
     // リサイズ時のイベントリスナーを追加
     window.addEventListener("resize", handleResize);
 
     // クリーンアップ
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [windowWidth]);
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    // };
+  }, [windowWidth, windowHeight]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
     mm.add(
       {
-        small: "(max-width: 1024px)",
-        large: "(min-width: 1025px)",
+        small: "(max-width: 768px)",
+        large: "(min-width: 769px)",
       },
       (ctx) => {
         if (ctx.conditions) {
           const { small } = ctx.conditions;
-          const INTRO_TL = gsap.timeline();
+
+          // **** イントロアニメーション ****
           const WORD_ANIMATE_RANGE = 30;
           const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
-          const LOGO = mainRef.current?.logoRef;
-          const FOOTER_HEIGHT = footerRef.current?.offsetHeight;
-          const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight;
-          const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight;
-
-          let fv_height: number = 0;
-          let logo_height: number = 0;
-          let end_height: number = 0;
-
-          if (FOOTER_HEIGHT && SERVICE_HEIGHT && MEMBER_HEIGHT) {
-            end_height = FOOTER_HEIGHT + SERVICE_HEIGHT + MEMBER_HEIGHT;
-          } else {
-            console.error("end_hight is null or undefined.");
-          }
-
-          if (mainRef.current?.fvRef) {
-            fv_height = mainRef.current?.fvRef?.offsetHeight;
-          } else {
-            console.error("fv_height is null or undefined.");
-          }
-
-          if (mainRef.current?.logoRef) {
-            logo_height = mainRef.current.logoRef.offsetHeight;
-          } else {
-            console.error("logo_height is null or undefined.");
-          }
 
           const randomValue = () =>
             gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
+
+          const INTRO_TL = gsap.timeline();
 
           INTRO_TL.set(".content-wrapper", {
             opacity: 1,
@@ -180,24 +168,9 @@ export default function Home() {
               },
               "-=0.2"
             );
+          // **** イントロアニメーション ****
 
-          const LOGO_SCROLL_TL = gsap.timeline();
-
-          LOGO_SCROLL_TL.set(".fv-logo", {
-            top: fv_height / 2 - logo_height / 2,
-          }).to(".fv-logo", {
-            // **** FVのロゴをbodyに追従 ****
-            scrollTrigger: {
-              trigger: "body",
-              start: "top top",
-              end: `bottom-=${end_height + end_height * 0.35}px bottom`,
-              scrub: 1,
-              markers: false,
-            },
-            // **** FVのロゴをbodyに追従 ****
-          });
-
-          // **** FVからのアニメーション ****
+          // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
           const FV_scrollTL = gsap.timeline({
             scrollTrigger: {
               trigger: ".fv-section",
@@ -234,11 +207,98 @@ export default function Home() {
               },
               "<"
             );
-          // **** FVからのアニメーション ****
+          // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
         }
       }
     );
   });
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          mobile: "(max-width: 768px)",
+          tablet: "(max-width: 1024px) and (min-height: 800px)",
+          small: "(max-width: 1024px)",
+          medium: "(min-width: 1025px) and (max-width: 1399px)",
+          large: "(min-width: 1400px)",
+        },
+        (ctx) => {
+          if (ctx.conditions) {
+            const { mobile, tablet, small, medium, large } = ctx.conditions;
+            // **** ロゴ追従アニメーション ****
+            const FOOTER_HEIGHT = footerRef.current?.offsetHeight;
+            const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight;
+            const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight;
+            const FV_HEIGHT = mainRef.current?.fvRef?.offsetHeight;
+            const LOGO_HEIGHT = mainRef.current?.logoRef?.offsetHeight;
+
+            let fv_height: number = 0;
+            let logo_height: number = 0;
+            let end_height: number = 0;
+
+            if (FOOTER_HEIGHT && SERVICE_HEIGHT && MEMBER_HEIGHT) {
+              end_height = FOOTER_HEIGHT + SERVICE_HEIGHT + MEMBER_HEIGHT;
+            } else {
+              console.error("end_hight is null or undefined.");
+            }
+
+            let endValue;
+
+            if (mobile) {
+              endValue = `bottom-=${end_height + end_height * 0.23}px bottom`;
+            } else if (tablet) {
+              endValue = `bottom-=${end_height + end_height * 0.23}px bottom`;
+            } else if (small) {
+              endValue = `bottom-=${end_height + end_height * 0.35}px bottom`;
+            } else if (medium) {
+              endValue = `bottom-=${end_height + end_height * 0.35}px bottom`;
+            } else if (large) {
+              endValue = `bottom-=${end_height + end_height * 0.25}px bottom`;
+            }
+
+            if (FV_HEIGHT) {
+              fv_height = FV_HEIGHT;
+            } else {
+              console.error("fv_height is null or undefined.");
+            }
+
+            if (LOGO_HEIGHT) {
+              logo_height = LOGO_HEIGHT;
+            } else {
+              console.error("logo_height is null or undefined.");
+            }
+
+            const LOGO_SCROLL_TL = gsap.timeline();
+
+            LOGO_SCROLL_TL.set(".fv-logo", {
+              top: fv_height / 2 - logo_height / 2,
+            }).to(".fv-logo", {
+              // **** FVのロゴをbodyに追従 ****
+              scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: endValue,
+                scrub: 1,
+                markers: true,
+                onUpdate: () => {
+                  let scrollY = window.scrollY;
+
+                  gsap.to(".fv-logo", {
+                    y: scrollY,
+                  });
+                },
+              },
+            });
+            // **** ロゴ追従アニメーション ****
+          }
+        }
+      );
+    },
+    { dependencies: [windowHeight, windowWidth] }
+  );
 
   return (
     <div className={clsx("content-wrapper", "opacity-0")}>
