@@ -31,7 +31,13 @@ const Fv = forwardRef<HTMLElement | null>((props, ref) => {
         />
       </h1>
 
-      <div className={clsx("absolute bottom-8 z-[3] w-[142px]", "md:hidden")}>
+      <div
+        className={clsx(
+          "sp-contact-button",
+          "absolute bottom-8 z-[3] w-[142px]",
+          "md:hidden"
+        )}
+      >
         <Button href="/contact" label="Contact" />
       </div>
     </section>

@@ -23,14 +23,6 @@ export default function Home() {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
 
-  const [footerHeightState, setFooterHeightState] = useState<number>(0);
-  const [serviceHeightState, setServiceHeightState] = useState<number>(0);
-  const [memberHeightState, setMemberHeightState] = useState<number>(0);
-  const [fvHeightState, setFvHeightState] = useState<number>(0);
-  const [logoHeightState, setLogoHeightState] = useState<number>(0);
-
-  let end_height = 0;
-
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
@@ -58,48 +50,15 @@ export default function Home() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
-      // setFooterHeightState(footerRef.current?.offsetHeight as number);
-      // setServiceHeightState(
-      //   mainRef.current?.serviceRef?.offsetHeight as number
-      // );
-      // setMemberHeightState(mainRef.current?.memberRef?.offsetHeight as number);
-      // setFvHeightState(mainRef.current?.fvRef?.offsetHeight as number);
-      // setLogoHeightState(mainRef.current?.logoRef?.offsetHeight as number);
-      // updateAnimation();
-
-      // console.log(fvHeightState);
     };
-
-    // アニメーションをリサイズ後に再計算する関数
-    // const updateAnimation = () => {
-    //   const LOGO_SCROLL_TL = gsap.timeline();
-
-    //   if (footerHeightState && serviceHeightState && memberHeightState) {
-    //     end_height = footerHeightState + serviceHeightState + memberHeightState;
-    //   }
-
-    //   if (fvHeightState && logoHeightState) {
-    //     LOGO_SCROLL_TL.set(".fv-logo", {
-    //       top: fvHeightState / 2 - logoHeightState / 2,
-    //     }).to(".fv-logo", {
-    //       scrollTrigger: {
-    //         trigger: "body",
-    //         start: "top top",
-    //         end: `bottom-=${end_height + end_height * 0.35}px bottom`,
-    //         scrub: 1,
-    //         markers: false,
-    //       },
-    //     });
-    //   }
-    // };
 
     // リサイズ時のイベントリスナーを追加
     window.addEventListener("resize", handleResize);
 
     // クリーンアップ
-    // return () => {
-    //   window.removeEventListener("resize", handleResize);
-    // };
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [windowWidth, windowHeight]);
 
   useGSAP(() => {
@@ -165,6 +124,15 @@ export default function Home() {
               ".header-inner",
               {
                 opacity: 0,
+              },
+              "-=0.2"
+            )
+            .from(
+              ".sp-contact-button",
+              {
+                opacity: 0,
+                duration: 1,
+                ease: "power4.out",
               },
               "-=0.2"
             );
