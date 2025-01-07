@@ -138,44 +138,12 @@ export default function Home() {
 
           // **** FVのロゴをbodyに追従 ****
           gsap.to(".fv-logo", {
-            onComplete: () => {
-              // アニメーション終了地点でfixedの解除
-              const scrollY = window.scrollY;
-
-              if (mainRef.current?.logoRef) {
-                logo_height = mainRef.current.logoRef.offsetHeight;
-              } else {
-                console.error("logo_height is null or undefined.");
-              }
-
-              if (LOGO) {
-                LOGO.style.position = "absolute";
-              }
-              gsap.set(".fv-logo", {
-                top: scrollY - logo_height / 2,
-              });
-            },
             scrollTrigger: {
               trigger: "body",
               start: "top top",
-              end: `bottom-=${end_height + end_height * 0.28}px bottom`,
+              end: `bottom-=${end_height + end_height * 0.35}px bottom`,
               scrub: 1,
-              markers: false,
-              onEnterBack: () => {
-                // アニメーション終了地点からの再開
-                const scrollY = window.scrollY;
-
-                if (mainRef.current?.logoRef) {
-                  logo_height = mainRef.current.logoRef.offsetHeight;
-                } else {
-                  console.error("logo_height is null or undefined.");
-                }
-
-                gsap.set(".fv-logo", {
-                  top: fv_height / 2 - logo_height / 2,
-                  position: "fixed",
-                });
-              },
+              markers: true,
             },
           });
           // **** FVのロゴをbodyに追従 ****
