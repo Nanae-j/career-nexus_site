@@ -9,16 +9,13 @@ import navItems from "./utils/NavItems";
 function Header() {
   return (
     <header
-      className={clsx(
-        "header",
-        "fixed left-1/2 top-10 z-[999] w-[90%] -translate-x-1/2 transform rounded-md bg-black bg-opacity-30 text-white",
-        "md:rounded-[0.625rem]"
-      )}
+      className={clsx("header", "fixed top-10 z-[999] w-[100%] text-white")}
     >
       <div
         className={clsx(
           "header-inner",
-          "flex min-h-11 items-center justify-between px-4 py-2",
+          "mx-auto flex min-h-11 w-[90%] items-center justify-between rounded-md bg-black bg-opacity-30 px-4 py-2",
+          "md:rounded-[0.625rem]",
           "lg:px-10"
         )}
       >

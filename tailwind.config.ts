@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "480px",
+      },
       fontFamily: {
         mundial: ["mundial, sans-serif"],
         kintoSans: ["kinto-sans, sans-serif"],

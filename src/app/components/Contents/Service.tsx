@@ -49,9 +49,13 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
   return (
     <section
       ref={ref}
-      className={clsx("bg-main-black pb-[80%]", "lg:pb-[20%]")}
+      className={clsx(
+        "overflow-x-hidden bg-main-black pb-[100%]",
+        "xs:pb-[30%]",
+        "sm:pb-[20%]"
+      )}
     >
-      <div className="service-section md:min-h-[800px]">
+      <div className={clsx("service-section", "md:min-h-[800px]")}>
         <div className={clsx("title-roll-area")}>
           <h2 className="sr-only">Service</h2>
           <RollText title="Service" images={rolltext_images} />
@@ -61,7 +65,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
             <li
               className={clsx(
                 "service-item",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-main-green px-6",
+                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-main-green px-6",
                 "md:p-8",
                 "lg:p-20"
               )}
@@ -100,8 +104,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,2rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 md:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 lg:text-[2rem]"
                     )}
                   >
                     専門人材派遣
@@ -123,7 +127,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
             <li
               className={clsx(
                 "service-item_2",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#80AFC6] px-6",
+                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#80AFC6] px-6",
                 "md:p-8",
                 "lg:p-20"
               )}
@@ -162,8 +166,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,2rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 md:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 lg:text-[2rem]"
                     )}
                   >
                     新卒・中途採用サポート
@@ -185,7 +189,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
             <li
               className={clsx(
                 "service-item_3",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[680px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#888CCA] px-6",
+                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#888CCA] px-6",
                 "md:p-8",
                 "lg:p-20"
               )}
@@ -224,8 +228,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,2rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 md:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 lg:text-[2rem]"
                     )}
                   >
                     外国人材の雇用支援

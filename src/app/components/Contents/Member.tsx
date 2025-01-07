@@ -94,7 +94,7 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
       className={clsx(
         "member-section",
         "relative z-[2] -mt-9 rounded-[1.9rem] bg-white py-24",
-        "md:py-[12.5rem]"
+        "xl:py-[12.5rem]"
       )}
     >
       <RollText title="Member" color="#000000" images={rolltext_images} />
