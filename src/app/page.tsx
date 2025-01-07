@@ -219,10 +219,10 @@ export default function Home() {
 
       mm.add(
         {
-          mobile: "(max-width: 768px)",
+          mobile: "(max-width: 1023px)",
           tablet: "(max-width: 1024px) and (min-height: 800px)",
-          small: "(max-width: 1024px)",
-          medium: "(min-width: 1025px) and (max-width: 1399px)",
+          small: "(min-width: 1024px) and (max-width: 1279px)",
+          medium: "(min-width: 1280px) and (max-width: 1399px)",
           large: "(min-width: 1400px)",
         },
         (ctx) => {
@@ -248,13 +248,13 @@ export default function Home() {
             let endValue;
 
             if (mobile) {
-              endValue = `bottom-=${end_height + end_height * 0.23}px bottom`;
+              endValue = `bottom-=${end_height}px center+=15%`;
             } else if (tablet) {
-              endValue = `bottom-=${end_height + end_height * 0.23}px bottom`;
+              endValue = `bottom-=${end_height}px center+=15%`;
             } else if (small) {
-              endValue = `bottom-=${end_height + end_height * 0.35}px bottom`;
+              endValue = `bottom-=${end_height}px bottom`;
             } else if (medium) {
-              endValue = `bottom-=${end_height + end_height * 0.35}px bottom`;
+              endValue = `bottom-=${end_height + end_height * 0.25}px bottom`;
             } else if (large) {
               endValue = `bottom-=${end_height + end_height * 0.25}px bottom`;
             }
@@ -282,7 +282,7 @@ export default function Home() {
                 start: "top top",
                 end: endValue,
                 scrub: 1,
-                markers: true,
+                markers: false,
                 onUpdate: () => {
                   let scrollY = window.scrollY;
 

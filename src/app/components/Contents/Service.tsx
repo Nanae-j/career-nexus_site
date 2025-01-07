@@ -23,37 +23,51 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
   ];
 
   useGSAP(() => {
-    // **** SERVICEからのアニメーション ****
-    const SERVICE_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".service-section",
-        start: "top+=10% top",
-        end: "bottom+=50% top",
-        markers: false,
-        pin: true,
-        scrub: 1,
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        small: "(max-width: 1279px)",
+        medium: "(min-width: 1280px)",
       },
-    });
+      (ctx) => {
+        if (ctx.conditions) {
+          const { medium } = ctx.conditions;
+          let startValue;
 
-    SERVICE_scrollTL.from(".service-item_2", {
-      y: "180%",
-      rotation: 30,
-    }).from(".service-item_3", {
-      y: "180%",
-      rotation: 30,
-    });
+          if (medium) {
+            startValue = "top+=20% top";
+            // **** SERVICEからのアニメーション ****
+            const SERVICE_scrollTL = gsap.timeline({
+              scrollTrigger: {
+                trigger: ".service-section",
+                start: startValue,
+                end: "bottom+=50% top",
+                markers: false,
+                pin: true,
+                scrub: 1,
+              },
+            });
 
-    // **** SERVICEからのアニメーション ****
+            SERVICE_scrollTL.from(".service-item_2", {
+              y: "180%",
+              rotation: 30,
+            }).from(".service-item_3", {
+              y: "180%",
+              rotation: 30,
+            });
+
+            // **** SERVICEからのアニメーション ****
+          }
+        }
+      }
+    );
   });
 
   return (
     <section
       ref={ref}
-      className={clsx(
-        "overflow-x-hidden bg-main-black pb-[100%]",
-        "xs:pb-[30%]",
-        "sm:pb-[20%]"
-      )}
+      className={clsx("overflow-x-hidden bg-main-black pb-40", "xl:pb-[20%]")}
     >
       <div className={clsx("service-section", "md:min-h-[800px]")}>
         <div className={clsx("title-roll-area")}>
@@ -61,13 +75,14 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
           <RollText title="Service" images={rolltext_images} />
         </div>
         <div className="mx-auto w-[90%] max-w-[1440px]">
-          <ul className={clsx("relative w-full pb-[170%]", "md:pb-[47%]")}>
+          <ul className={clsx("relative w-full", "xl:pb-[47%]")}>
             <li
               className={clsx(
                 "service-item",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-main-green px-6",
-                "md:p-8",
-                "lg:p-20"
+                "relative mb-20 flex min-h-[711px] w-full items-center justify-center overflow-hidden rounded-[1.3rem] bg-main-green px-6",
+                "md:max-h-[90vh] md:min-h-0 md:p-8",
+                "lg:p-20",
+                "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
               <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
@@ -104,8 +119,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 lg:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.5rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 xl:text-[2rem]"
                     )}
                   >
                     専門人材派遣
@@ -127,9 +142,10 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
             <li
               className={clsx(
                 "service-item_2",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#80AFC6] px-6",
-                "md:p-8",
-                "lg:p-20"
+                "relative mb-20 flex min-h-[711px] w-full items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#80AFC6] px-6",
+                "md:max-h-[90vh] md:min-h-0 md:p-8",
+                "lg:p-20",
+                "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
               <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
@@ -166,8 +182,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 lg:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.5rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 xl:text-[2rem]"
                     )}
                   >
                     新卒・中途採用サポート
@@ -189,9 +205,10 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
             <li
               className={clsx(
                 "service-item_3",
-                "absolute left-1/2 top-0 z-[2] mb-20 flex min-h-[711px] w-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#888CCA] px-6",
-                "md:p-8",
-                "lg:p-20"
+                "relative mb-20 flex min-h-[711px] w-full items-center justify-center overflow-hidden rounded-[1.3rem] bg-[#888CCA] px-6",
+                "md:max-h-[90vh] md:min-h-0 md:p-8",
+                "lg:p-20",
+                "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
               <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
@@ -228,8 +245,8 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 <div className={clsx("md:ml-[3%] md:w-[38%]")}>
                   <h3
                     className={clsx(
-                      "mb-6 font-kintoSans text-[min(6.4vw,1.7rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
-                      "md:mb-8 lg:text-[2rem]"
+                      "mb-6 font-kintoSans text-[min(6.4vw,1.5rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+                      "md:mb-8 xl:text-[2rem]"
                     )}
                   >
                     外国人材の雇用支援
