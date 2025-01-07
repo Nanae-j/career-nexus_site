@@ -23,6 +23,8 @@ export default function Home() {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
@@ -302,7 +304,7 @@ export default function Home() {
 
   return (
     <div className={clsx("content-wrapper", "opacity-0")}>
-      <Header />
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <Main ref={mainRef} />
       <Footer ref={footerRef} />
     </div>

@@ -5,8 +5,17 @@ import clsx from "clsx";
 import MenuLogo from "./Logos/MenuLogo";
 import Button from "./utils/Button";
 import navItems from "./utils/NavItems";
+import { Dispatch, SetStateAction } from "react";
 
-function Header() {
+interface HeaderProps {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+function Header({ isOpen, setIsOpen }: HeaderProps) {
+  const onClick = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   return (
     <header
       className={clsx("header", "fixed top-10 z-[999] w-[100%] text-white")}
@@ -54,21 +63,46 @@ function Header() {
           />
         </div>
 
-        <div className={clsx("w-6", "md:hidden")}>
-          <button className={clsx("relative block h-5 w-full p-2")}>
+        <div className={clsx("5-5 h-5", "md:hidden")}>
+          <button
+            onClick={onClick}
+            className={clsx(
+              "relative flex h-full w-5 items-center justify-center"
+            )}
+          >
             <span
               className={clsx(
-                "absolute left-1/2 top-[0.35rem] block h-[1px] w-full -translate-x-1/2 bg-white"
+                "absolute left-1/2 block h-[1px] w-full origin-center -translate-x-1/2 -translate-y-1 bg-white duration-200",
+                isOpen && "translate-y-0 rotate-45"
               )}
             ></span>
             <span
               className={clsx(
-                "absolute bottom-[0.35rem] left-1/2 block h-[1px] w-full -translate-x-1/2 bg-white"
+                "absolute left-1/2 block h-[1px] w-full origin-center -translate-x-1/2 translate-y-1 bg-white duration-200",
+                isOpen && "translate-y-0 -rotate-45"
               )}
             ></span>
           </button>
         </div>
       </div>
+
+      <nav
+        className={clsx(
+          "sp-nav",
+          "fixed left-auto top-14 h-[100vh] w-full bg-black bg-opacity-70 p-8 duration-200",
+          isOpen ? "right-0" : "-right-[100%]"
+        )}
+      >
+        <ul>
+          {navItems.map(({ label, href }, index) => (
+            <li key={index} className="px-[2.5%] py-5">
+              <Link href={href} className="block w-full py-2">
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }
