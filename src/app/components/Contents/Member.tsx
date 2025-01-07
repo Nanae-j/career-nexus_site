@@ -23,55 +23,69 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
   ];
 
   useGSAP(() => {
-    // **** MEMEBERからのアニメーション ****
-    const MEMEBER_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".member-section",
-        start: "top+=10% top",
-        end: "bottom top",
-        markers: false,
-        scrub: 1,
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        small: "(max-width: 768px)",
+        large: "(min-width: 769px)",
       },
-    });
+      (ctx) => {
+        if (ctx.conditions) {
+          const { small } = ctx.conditions;
+          console.log(small);
+          // **** MEMEBERからのアニメーション ****
+          const MEMEBER_scrollTL = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".member-section",
+              start: "top+=10% top",
+              end: "bottom top",
+              markers: false,
+              scrub: 1,
+            },
+          });
 
-    MEMEBER_scrollTL.to(".member-list", {
-      y: "-20%",
-    });
+          MEMEBER_scrollTL.to(".member-list", {
+            y: small ? "-10%" : "-20%",
+          });
 
-    const colorTL = gsap.timeline();
+          const colorTL = gsap.timeline();
 
-    colorTL
-      .to(".member-logo #out-side-path", {
-        fill: "#9AD5CD",
-        fillOpacity: "0.2",
-        repeat: -1,
-        duration: 5,
-        yoyo: true,
-      })
-      .to(
-        ".member-logo #middle-path",
-        {
-          fill: "#B4D0A9",
-          fillOpacity: "0.2",
-          repeat: -1,
-          duration: 5,
-          yoyo: true,
-        },
-        "<"
-      )
-      .to(
-        ".member-logo #inside-path",
-        {
-          fill: "#F8FFAA",
-          fillOpacity: 0.18,
-          repeat: -1,
-          duration: 5,
-          yoyo: true,
-        },
-        "<"
-      );
+          colorTL
+            .to(".member-logo #out-side-path", {
+              fill: "#9AD5CD",
+              fillOpacity: "0.2",
+              repeat: -1,
+              duration: 5,
+              yoyo: true,
+            })
+            .to(
+              ".member-logo #middle-path",
+              {
+                fill: "#B4D0A9",
+                fillOpacity: "0.2",
+                repeat: -1,
+                duration: 5,
+                yoyo: true,
+              },
+              "<"
+            )
+            .to(
+              ".member-logo #inside-path",
+              {
+                fill: "#F8FFAA",
+                fillOpacity: 0.18,
+                repeat: -1,
+                duration: 5,
+                yoyo: true,
+              },
+              "<"
+            );
 
-    // **** SERVICEからのアニメーション ****
+          // **** MEMBERからのアニメーション ****
+        }
+      }
+    );
   });
 
   return (
@@ -79,17 +93,45 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
       ref={ref}
       className={clsx(
         "member-section",
-        "relative z-[2] -mt-9 rounded-[1.9rem] bg-white py-[12.5rem]"
+        "relative z-[2] -mt-9 rounded-[1.9rem] bg-white py-24",
+        "md:py-[12.5rem]"
       )}
     >
       <RollText title="Member" color="#000000" images={rolltext_images} />
-      <div className="relative mx-auto w-[95%] overflow-hidden rounded-[1.2rem] bg-main-black">
-        <div className="absolute -left-[10%] -top-[10%] w-[67%]">
+      <div
+        className={clsx(
+          "relative mx-auto overflow-hidden rounded-[1.2rem] bg-main-black",
+          "md:w-[95%]"
+        )}
+      >
+        <div
+          className={clsx(
+            "absolute -left-[50%] bottom-0 top-auto w-[140%]",
+            "md:-left-[10%] md:-top-[10%] md:bottom-auto md:w-[67%]"
+          )}
+        >
           <Logo className="member-logo" />
         </div>
-        <div className="relative w-full pb-[57%]">
-          <div className="bg-memberFilter absolute-center absolute z-[2] w-full pb-[57%] opacity-80"></div>
-          <div className="absolute -right-[8%] left-auto top-1/2 ml-auto w-[75%] -translate-y-1/2 -rotate-12">
+        <div
+          className={clsx(
+            "relative w-full pb-[177%]",
+            "md:pb-[70%]",
+            "lg:pb-[57%]"
+          )}
+        >
+          <div
+            className={clsx(
+              "bg-memberFilterSP absolute-center absolute z-[2] w-full pb-[177%] opacity-80",
+              "md:bg-memberFilter md:pb-[70%]",
+              "lg:pb-[57%]"
+            )}
+          ></div>
+          <div
+            className={clsx(
+              "absolute left-auto top-1/2 ml-auto w-[170%] -translate-y-1/2 -rotate-12",
+              "md:-right-[8%] md:w-[75%]"
+            )}
+          >
             <ul
               className={clsx(
                 "member-list",
@@ -112,13 +154,28 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
             </ul>
           </div>
         </div>
-        <div className="absolute left-[10%] top-1/2 z-[3] w-[440px] -translate-y-1/2">
-          <h3 className="mb-8 font-kintoSans text-[2rem] font-kintoSans-medium leading-[180%] tracking-widest text-white">
+        <div
+          className={clsx(
+            "absolute left-1/2 top-[15%] z-[3] w-[84%] -translate-x-1/2",
+            "md:left-[10%] md:top-1/2 md:w-[440px] md:-translate-x-0 md:-translate-y-1/2"
+          )}
+        >
+          <h3
+            className={clsx(
+              "mb-6 font-kintoSans text-[min(6.4vw,2rem)] font-kintoSans-medium leading-[180%] tracking-widest text-white",
+              "md:mb-8 md:text-[2rem]"
+            )}
+          >
             一人ひとりが企業と
             <br />
             求職者をつなぐ架け橋
           </h3>
-          <p className="mb-16 font-kintoSans text-lg font-kintoSans-medium leading-[240%] tracking-widest text-white">
+          <p
+            className={clsx(
+              "mb-10 font-kintoSans text-[0.95rem] font-kintoSans-medium leading-[240%] tracking-widest text-white",
+              "md:mb-16 md:text-lg md:leading-[240%]"
+            )}
+          >
             私たちのチームは、業界経験豊富なプロフェッショナルと、柔軟な発想で新しい価値を生み出す若手メンバーで構成されています。企業と求職者が共に成長できる未来をつくるため、一人ひとりが情熱を持って取り組んでいます。
           </p>
           <div className="w-[166px]">

@@ -35,6 +35,8 @@ const config: Config = {
           "radial-gradient(circle, rgba(27,196,125,1) 38%, rgba(24,160,251,1) 55%, rgba(144,124,255,1) 70%)",
         memberFilter:
           "linear-gradient(90deg, rgba(26,22,22,1) 0%, rgba(0,0,0,0) 100%)",
+        memberFilterSP:
+          "linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(26,22,22,1) 100%)",
       },
       animation: {
         "spin-gradient": "spin-gradient 20s linear infinite",

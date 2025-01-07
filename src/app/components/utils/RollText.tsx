@@ -26,7 +26,8 @@ const RollText = ({ title, color = "#FFFFFF", images }: RollTextProps) => {
             >
               <p
                 className={clsx(
-                  "mr-10 font-mundial text-[6.5rem] font-mundial-thin",
+                  "mr-10 font-mundial text-[min(17.07vw,6rem)] font-mundial-thin",
+                  "lg:text-[6.5rem]",
                   color === "#FFFFFF" ? `text-white` : `text-[${color}]`
                 )}
               >

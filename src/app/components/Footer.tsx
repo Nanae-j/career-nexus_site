@@ -11,18 +11,23 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
   return (
     <footer
       ref={ref}
-      className="-mt-7 bg-[url('/images/footer-bg.jpg')] bg-cover pb-4 pt-64"
+      className={clsx(
+        "-mt-7 bg-[url('/images/footer-bg.jpg')] bg-cover bg-[center_bottom] pb-4 pt-40",
+        "lg:pt-64"
+      )}
     >
       <Link
         href="/contact"
         className={clsx(
           "group",
-          "mx-auto mb-40 flex w-[70%] items-center justify-between"
+          "mx-auto mb-20 flex w-[84%] items-center justify-between",
+          "lg:mb-40 lg:w-[70%]"
         )}
       >
         <span
           className={clsx(
-            "font-mundial text-[5rem] font-mundial-thin text-white duration-500",
+            "font-mundial text-[min(17.066vw,4rem)] font-mundial-thin text-white duration-500",
+            "lg:text-[5rem]",
             "group-hover:text-main-green"
           )}
         >
@@ -30,7 +35,8 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
         </span>
         <span
           className={clsx(
-            "h-16 w-16 text-white duration-500",
+            "mt-[4%] aspect-square w-[8%] text-white duration-500",
+            "lg:h-16 lg:w-16",
             "group-hover:text-main-green"
           )}
         >
@@ -38,17 +44,36 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
         </span>
       </Link>
 
-      <div className="mx-auto w-[94%] rounded-[2.5rem] pt-32 backdrop-blur-sm">
-        <div className="mx-auto flex w-[71%] items-start justify-between gap-x-7">
+      <div
+        className={clsx(
+          "mx-auto w-[94%] rounded-[2.5rem] pt-16 backdrop-blur-sm",
+          "lg:pt-32"
+        )}
+      >
+        <div
+          className={clsx(
+            "mx-auto w-[90%]",
+            "lg:flex lg:w-[71%] lg:items-start lg:justify-between lg:gap-x-7"
+          )}
+        >
           <Link
             href="/"
-            className={clsx("block w-[209px] duration-700", "hover:invert-[1]")}
+            className={clsx(
+              "mb-11 block w-[47%] duration-700",
+              "lg:mb-0 lg:w-[209px]",
+              "hover:invert-[1]"
+            )}
           >
             <MenuLogo />
           </Link>
 
-          <div className="mb-[8.8rem] flex-grow">
-            <ul className="grid grid-cols-4 grid-rows-1 text-right font-mundial text-lg font-mundial-light tracking-wide text-white">
+          <div className={clsx("mb-8 flex-grow", "lg:mb-[8.8rem]")}>
+            <ul
+              className={clsx(
+                "grid grid-cols-2 grid-rows-2 gap-y-6 text-left font-mundial text-lg font-mundial-light tracking-wide text-white",
+                "lg:grid-cols-4 lg:grid-rows-1 lg:gap-y-0 lg:text-right"
+              )}
+            >
               {navItems.map(({ label, href }, index) => (
                 <li key={index}>
                   <Link
@@ -63,21 +88,27 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
           </div>
         </div>
 
-        <div className="mx-auto w-[71%]">
-          <div className="flex w-[51%] items-center justify-between pb-10 text-white">
-            <p className="font-mundial text-sm font-mundial-light tracking-wide">
-              &copy;2024 Career Nexus
-            </p>
-
+        <div className={clsx("mx-auto w-[95%]", "lg:w-[71%]")}>
+          <div
+            className={clsx(
+              "w-full pb-10 text-white",
+              "lg:flex lg:w-[51%] lg:items-center lg:justify-between"
+            )}
+          >
             <Link
               href="/privacy"
               className={clsx(
-                "font-kintoSans text-xs font-kintoSans-regular tracking-wide duration-500",
+                "mb-10 inline-block font-kintoSans text-xs font-kintoSans-regular tracking-wide duration-500",
+                "lg:order-1 lg:mb-0",
                 "hover:text-main-green"
               )}
             >
               個人情報保護方針
             </Link>
+
+            <p className="font-mundial text-sm font-mundial-light tracking-wide">
+              &copy;2024 Career Nexus
+            </p>
           </div>
         </div>
       </div>

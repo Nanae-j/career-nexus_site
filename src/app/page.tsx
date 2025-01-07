@@ -143,7 +143,7 @@ export default function Home() {
               start: "top top",
               end: `bottom-=${end_height + end_height * 0.35}px bottom`,
               scrub: 1,
-              markers: true,
+              markers: false,
             },
           });
           // **** FVのロゴをbodyに追従 ****
@@ -159,7 +159,7 @@ export default function Home() {
           });
 
           FV_scrollTL.to(".fv-logo", {
-            scale: 0.63,
+            scale: small ? 1 : 0.63,
           })
             .to(
               ".fv-logo #out-side-path",
