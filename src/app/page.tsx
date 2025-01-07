@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { ContextSafeFunc, useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
@@ -44,22 +44,6 @@ export default function Home() {
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
     // *******
   }, []);
-
-  useEffect(() => {
-    // リサイズイベントのリスナーを設定
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
-    };
-
-    // リサイズ時のイベントリスナーを追加
-    window.addEventListener("resize", handleResize);
-
-    // クリーンアップ
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [windowWidth, windowHeight]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -182,7 +166,8 @@ export default function Home() {
   });
 
   useGSAP(
-    () => {
+    (context, contextSafe) => {
+      // console.log(context);
       const mm = gsap.matchMedia();
 
       mm.add(
@@ -213,7 +198,7 @@ export default function Home() {
               console.error("end_hight is null or undefined.");
             }
 
-            let endValue;
+            let endValue: string = "";
 
             if (mobile) {
               endValue = `bottom-=${end_height}px center+=15%`;
@@ -261,6 +246,53 @@ export default function Home() {
               },
             });
             // **** ロゴ追従アニメーション ****
+
+            // リサイズイベントのリスナーを設定
+            let handleResize: () => void = () => {
+              console.warn(
+                "handleResize is not set because contextSafe is undefined."
+              );
+            };
+
+            if (contextSafe) {
+              handleResize = contextSafe(() => {
+                setWindowWidth(window.innerWidth);
+                setWindowHeight(window.innerHeight);
+
+                LOGO_SCROLL_TL.set(".fv-logo", {
+                  top: fv_height / 2 - logo_height / 2,
+                }).to(".fv-logo", {
+                  // **** FVのロゴをbodyに追従 ****
+                  scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: endValue,
+                    scrub: 1,
+                    markers: false,
+                    onUpdate: () => {
+                      let scrollY = window.scrollY;
+
+                      gsap.to(".fv-logo", {
+                        y: scrollY,
+                      });
+                    },
+                  },
+                });
+                // **** ロゴ追従アニメーション ****
+              });
+            } else {
+              console.log(
+                "contextSafe is undefined. Resize handler is not set."
+              );
+            }
+
+            // リサイズ時のイベントリスナーを追加
+            window.addEventListener("resize", handleResize);
+
+            // クリーンアップ
+            return () => {
+              window.removeEventListener("resize", handleResize);
+            };
           }
         }
       );
