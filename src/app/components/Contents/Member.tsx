@@ -33,7 +33,6 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
       (ctx) => {
         if (ctx.conditions) {
           const { small } = ctx.conditions;
-          console.log(small);
           // **** MEMEBERからのアニメーション ****
           const MEMEBER_scrollTL = gsap.timeline({
             scrollTrigger: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -19,6 +19,8 @@ gsap.registerPlugin(useGSAP);
 export default function Home() {
   const footerRef = useRef<HTMLElement | null>(null);
   const mainRef = useRef<MainRef | null>(null);
+
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
@@ -41,6 +43,53 @@ export default function Home() {
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
     // *******
   }, []);
+
+  useEffect(() => {
+    // リサイズイベントのリスナーを設定
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      updateAnimation();
+    };
+
+    // アニメーションをリサイズ後に再計算する関数
+    const updateAnimation = () => {
+      const LOGO_SCROLL_TL = gsap.timeline();
+
+      const fv_height = mainRef.current?.fvRef?.offsetHeight ?? 0;
+      const logo_height = mainRef.current?.logoRef?.offsetHeight ?? 0;
+      const FOOTER_HEIGHT = footerRef.current?.offsetHeight ?? 0;
+      const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight ?? 0;
+      const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight ?? 0;
+
+      let end_height = 0;
+
+      if (FOOTER_HEIGHT && SERVICE_HEIGHT && MEMBER_HEIGHT) {
+        end_height = FOOTER_HEIGHT + SERVICE_HEIGHT + MEMBER_HEIGHT;
+      }
+
+      if (fv_height && logo_height) {
+        LOGO_SCROLL_TL.set(".fv-logo", {
+          top: fv_height / 2 - logo_height / 2,
+        }).to(".fv-logo", {
+          scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: `bottom-=${end_height + end_height * 0.35}px bottom`,
+            scrub: 1,
+            markers: false,
+          },
+        });
+      }
+    };
+
+    // リサイズ時のイベントリスナーを追加
+    window.addEventListener("resize", handleResize);
+
+    // クリーンアップ
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -132,21 +181,39 @@ export default function Home() {
               "-=0.2"
             );
 
-          gsap.set(".fv-logo", {
-            top: fv_height / 2 - logo_height / 2,
-          });
+          const LOGO_SCROLL_TL = gsap.timeline();
 
-          // **** FVのロゴをbodyに追従 ****
-          gsap.to(".fv-logo", {
+          LOGO_SCROLL_TL.set(".fv-logo", {
+            top: fv_height / 2 - logo_height / 2,
+          }).to(".fv-logo", {
+            // **** FVのロゴをbodyに追従 ****
             scrollTrigger: {
               trigger: "body",
               start: "top top",
               end: `bottom-=${end_height + end_height * 0.35}px bottom`,
               scrub: 1,
-              markers: false,
+              markers: true,
             },
+            // **** FVのロゴをbodyに追従 ****
           });
-          // **** FVのロゴをbodyに追従 ****
+
+          // アニメーションをリサイズ後に再計算する関数
+          const updateAnimation = () => {
+            LOGO_SCROLL_TL.clear(); // 現在のアニメーションをクリア
+            LOGO_SCROLL_TL.set(".fv-logo", {
+              top: fv_height / 2 - logo_height / 2,
+            }).to(".fv-logo", {
+              // **** FVのロゴをbodyに追従 ****
+              scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: `bottom-=${end_height + end_height * 0.35}px bottom`,
+                scrub: 1,
+                markers: false,
+              },
+              // **** FVのロゴをbodyに追従 ****
+            });
+          };
 
           // **** FVからのアニメーション ****
           const FV_scrollTL = gsap.timeline({
