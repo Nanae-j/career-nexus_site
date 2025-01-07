@@ -192,28 +192,10 @@ export default function Home() {
               start: "top top",
               end: `bottom-=${end_height + end_height * 0.35}px bottom`,
               scrub: 1,
-              markers: true,
+              markers: false,
             },
             // **** FVのロゴをbodyに追従 ****
           });
-
-          // アニメーションをリサイズ後に再計算する関数
-          const updateAnimation = () => {
-            LOGO_SCROLL_TL.clear(); // 現在のアニメーションをクリア
-            LOGO_SCROLL_TL.set(".fv-logo", {
-              top: fv_height / 2 - logo_height / 2,
-            }).to(".fv-logo", {
-              // **** FVのロゴをbodyに追従 ****
-              scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: `bottom-=${end_height + end_height * 0.35}px bottom`,
-                scrub: 1,
-                markers: false,
-              },
-              // **** FVのロゴをbodyに追従 ****
-            });
-          };
 
           // **** FVからのアニメーション ****
           const FV_scrollTL = gsap.timeline({
