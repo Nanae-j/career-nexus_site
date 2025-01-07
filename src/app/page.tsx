@@ -58,42 +58,41 @@ export default function Home() {
       (ctx) => {
         if (ctx.conditions) {
           const { small } = ctx.conditions;
-          const introTL = gsap.timeline();
+          const INTRO_TL = gsap.timeline();
           const WORD_ANIMATE_RANGE = 30;
           const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
-          const footer_height = footerRef.current?.offsetHeight;
-          const service_height = mainRef.current?.serviceRef?.offsetHeight;
-          const member_height = mainRef.current?.memberRef?.offsetHeight;
+          const FOOTER_HEIGHT = footerRef.current?.offsetHeight;
+          const SERVICE_HEIGHT = mainRef.current?.serviceRef?.offsetHeight;
+          const MEMBER_HEIGHT = mainRef.current?.memberRef?.offsetHeight;
 
-          let FV_HEIGHT = 0;
-          let LOGO_HEIGHT: number = 0;
+          let fv_height: number = 0;
+          let logo_height: number = 0;
           let end_height: number = 0;
 
-          if (footer_height && service_height && member_height) {
-            end_height = footer_height + service_height + member_height;
+          if (FOOTER_HEIGHT && SERVICE_HEIGHT && MEMBER_HEIGHT) {
+            end_height = FOOTER_HEIGHT + SERVICE_HEIGHT + MEMBER_HEIGHT;
           } else {
             console.error("end_hight is null or undefined.");
           }
 
           if (mainRef.current?.fvRef) {
-            FV_HEIGHT = mainRef.current?.fvRef?.offsetHeight;
+            fv_height = mainRef.current?.fvRef?.offsetHeight;
           } else {
-            console.error("FV_HEIGHT is null or undefined.");
+            console.error("fv_height is null or undefined.");
           }
 
           if (mainRef.current?.logoRef) {
-            LOGO_HEIGHT = mainRef.current.logoRef.offsetHeight;
+            logo_height = mainRef.current.logoRef.offsetHeight;
           } else {
-            console.error("LOGO_HEIGHT is null or undefined.");
+            console.error("logo_height is null or undefined.");
           }
 
           const randomValue = () =>
             gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
 
-          introTL
-            .set(".content-wrapper", {
-              opacity: 1,
-            })
+          INTRO_TL.set(".content-wrapper", {
+            opacity: 1,
+          })
             .set(".fv-heading-word > span", {
               x: randomValue,
               y: randomValue,
@@ -138,7 +137,7 @@ export default function Home() {
             );
 
           gsap.set(".fv-logo", {
-            top: FV_HEIGHT / 2 - LOGO_HEIGHT / 2,
+            top: fv_height / 2 - logo_height / 2,
           });
 
           // **** FVのロゴをbodyに追従 ****
@@ -153,13 +152,13 @@ export default function Home() {
                 const scrollY = window.scrollY;
 
                 if (mainRef.current?.logoRef) {
-                  LOGO_HEIGHT = mainRef.current.logoRef.offsetHeight;
+                  logo_height = mainRef.current.logoRef.offsetHeight;
                 } else {
-                  console.error("LOGO_HEIGHT is null or undefined.");
+                  console.error("logo_height is null or undefined.");
                 }
 
                 gsap.to(".fv-logo", {
-                  top: LOGO_HEIGHT / 2,
+                  top: logo_height / 2,
                   y: scrollY,
                 });
               },
