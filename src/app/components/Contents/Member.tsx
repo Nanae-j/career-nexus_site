@@ -230,4 +230,7 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
   );
 });
 
+// displayNameを設定
+Member.displayName = "Member";
+
 export default Member;

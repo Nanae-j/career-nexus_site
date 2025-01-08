@@ -116,4 +116,7 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
   );
 });
 
+// displayNameを設定
+Footer.displayName = "Footer";
+
 export default Footer;

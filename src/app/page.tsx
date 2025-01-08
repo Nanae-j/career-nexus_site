@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
-import { ContextSafeFunc, useGSAP } from "@gsap/react";
+import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
@@ -239,7 +239,7 @@ export default function Home() {
                 scrub: 1,
                 markers: false,
                 onUpdate: () => {
-                  let scrollY = window.scrollY;
+                  const scrollY = window.scrollY;
 
                   gsap.to(".fv-logo", {
                     y: scrollY,
@@ -272,7 +272,7 @@ export default function Home() {
                     scrub: 1,
                     markers: false,
                     onUpdate: () => {
-                      let scrollY = window.scrollY;
+                      const scrollY = window.scrollY;
 
                       gsap.to(".fv-logo", {
                         y: scrollY,

@@ -278,4 +278,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
   );
 });
 
+// displayNameを設定
+Service.displayName = "Service";
+
 export default Service;

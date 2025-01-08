@@ -60,4 +60,7 @@ const Main = forwardRef<MainRef | null>((props, ref) => {
   );
 });
 
+// displayNameを設定
+Main.displayName = "Main";
+
 export default Main;

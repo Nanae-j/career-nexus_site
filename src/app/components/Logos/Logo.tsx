@@ -124,4 +124,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
   )
 );
 
+// displayNameを設定
+SvgIcon.displayName = "Logo";
+
 export default SvgIcon;
