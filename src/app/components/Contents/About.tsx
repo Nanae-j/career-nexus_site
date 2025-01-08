@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 
 import clsx from "clsx";
 import { useGSAP } from "@gsap/react";
@@ -12,36 +13,99 @@ import Button from "../utils/Button";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
-  useGSAP(() => {
-    // **** ABOUTからのアニメーション ****
-    const ABOUT_scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about-section",
-        start: "top+=20% top",
-        end: "center top",
-        // markers: true,
-        scrub: 1.5,
-      },
-    });
+  const aboutRef = useRef<HTMLElement | null>(null);
 
-    ABOUT_scrollTL.to(
-      ".about-img-area",
-      {
-        width: "100%",
-      },
-      "<"
-    ).to(
-      ".about-img-area > div",
-      {
-        filter: "saturate(1)",
-      },
-      "<"
-    );
-    // **** ABOUTからのアニメーション ****
-  });
+  useGSAP(
+    () => {
+      if (!aboutRef.current) return; // 要素が存在しない場合は終了
+      // **** ABOUT 画像スケールアニメーション ****
+      const ABOUT_Image_scrollTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top+=20% top",
+          end: "center top",
+          // markers: true,
+          scrub: 1.5,
+        },
+      });
+
+      ABOUT_Image_scrollTL.to(
+        ".about-img-area",
+        {
+          width: "100%",
+        },
+        "<"
+      ).to(
+        ".about-img-area > div",
+        {
+          filter: "saturate(1)",
+        },
+        "<"
+      );
+      // **** ABOUT 画像スケールアニメーション ****
+    },
+    { scope: aboutRef }
+  );
+
+  useGSAP(
+    () => {
+      if (!aboutRef.current) return; // 要素が存在しない場合は終了
+
+      // **** ABOUT フェードイン ****
+      const ABOUT_Fade_scrollTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top bottom-=30%",
+          end: "bottom bottom",
+          markers: false,
+        },
+      });
+
+      ABOUT_Fade_scrollTL.from(".about-title", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power4.in",
+      })
+        .from(
+          ".about-description",
+          {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power4.in",
+          },
+          "-=0.5"
+        )
+        .from(
+          ".button",
+          {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power4.in",
+          },
+          "-=0.5"
+        )
+        .from(
+          ".about-img-area",
+          {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power4.in",
+          },
+          "-=0.5"
+        );
+      // **** ABOUT フェードイン ****
+
+      // クリーンアップ
+      // return () => {
+      //   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      // };
+    },
+    { scope: aboutRef }
+  );
 
   return (
     <section
+      ref={aboutRef}
       className={clsx(
         "about-section",
         "bg-main-black pb-20 pt-[7.5rem]",
@@ -57,6 +121,7 @@ const About = () => {
         >
           <h2
             className={clsx(
+              "about-title",
               "mb-10 font-kintoSans text-[min(7.47vw,3rem)] font-kintoSans-medium leading-[180%] tracking-wider text-white",
               "lg:mb-12 lg:text-[2.5rem]"
             )}
@@ -67,6 +132,7 @@ const About = () => {
           </h2>
           <p
             className={clsx(
+              "about-description",
               "mb-14 font-kintoSans text-base font-kintoSans-medium leading-[240%] tracking-wider text-white",
               "md:w-[48%] md:min-w-[520px]",
               "lg:mb-16 lg:text-lg lg:leading-[240%]"
@@ -74,7 +140,7 @@ const About = () => {
           >
             私たちは、人材と企業をつなぐパートナーです。一人ひとりの可能性を最大限に引き出し、新しい働き方や挑戦の場を提供しています。個性や強みを活かせる環境で、自分らしく輝けるキャリアを。夢や目標に向かって一歩を踏み出すとき、私たちがそばで支えます。『あなたらしいキャリア』を一緒に見つけるお手伝いをさせてください。
           </p>
-          <div className="w-[166px]">
+          <div className={clsx("button", "w-[166px]")}>
             <Button href={"/about"} label={"Read More"} />
           </div>
         </div>

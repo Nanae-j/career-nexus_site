@@ -28,15 +28,21 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
     mm.add(
       {
         small: "(max-width: 1279px)",
-        medium: "(min-width: 1280px)",
+        medium: "(min-width: 1280px) and (max-width: 1399px)",
+        large: "(min-width: 1400px)",
       },
       (ctx) => {
         if (ctx.conditions) {
-          const { medium } = ctx.conditions;
+          const { medium, large } = ctx.conditions;
           let startValue;
 
           if (medium) {
             startValue = "top+=20% top";
+          } else if (large) {
+            startValue = "top+=8% top";
+          }
+
+          if (medium || large) {
             // **** SERVICEからのアニメーション ****
             const SERVICE_scrollTL = gsap.timeline({
               scrollTrigger: {

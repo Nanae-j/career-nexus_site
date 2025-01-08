@@ -1,25 +1,78 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 
 import clsx from "clsx";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
 
 import { MdOutlineArrowForward } from "react-icons/md";
 import Button from "../utils/Button";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 const News = () => {
+  const newsRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      if (!newsRef.current) return; // 要素が存在しない場合は終了
+
+      const NEWS_scrollTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: newsRef.current,
+          start: "top bottom-=20%",
+          end: "bottom bottom",
+          markers: false,
+        },
+      });
+
+      NEWS_scrollTL.from(".title", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power4.in",
+      })
+        .from(
+          ".list > li",
+          {
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.3,
+            ease: "power4.in",
+          },
+          "-=0.5"
+        )
+        .from(
+          ".button",
+          {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power4.in",
+          },
+          "-=0.2"
+        );
+    },
+    { scope: newsRef }
+  );
+
   return (
     <section
+      ref={newsRef}
       className={clsx("news-section", "bg-main-black pb-28", "lg:pb-60")}
     >
       <div className={clsx("relative z-[2] mx-auto w-[84%]", "lg:w-[75%]")}>
         <h2
           className={clsx(
+            "title",
             "mb-12 font-mundial text-[min(12.8vw,5rem)] font-mundial-thin text-white",
             "lg:mb-20 lg:text-[5rem]"
           )}
         >
           News
         </h2>
-        <ul className={clsx("mb-12", "lg:mb-20")}>
+        <ul className={clsx("list", "mb-12", "lg:mb-20")}>
           <li className={clsx("mb-10")}>
             <Link
               href="/news"
@@ -54,7 +107,7 @@ const News = () => {
             </Link>
           </li>
         </ul>
-        <div className="ml-auto flex w-[166px]">
+        <div className={clsx("button", "ml-auto flex w-[166px]")}>
           <Button href="/news" label="Read More" />
         </div>
       </div>
