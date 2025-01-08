@@ -9,15 +9,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 import Button from "../../utils/Button";
-import { NewsType } from "@/app/_libs/microcms";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type AboutProps = {
-  news: NewsType[];
-};
-
-const About = ({ news }: AboutProps) => {
+const About = () => {
   const aboutRef = useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -102,15 +97,6 @@ const About = ({ news }: AboutProps) => {
     },
     { scope: aboutRef }
   );
-
-  console.log(news);
-
-  if (!news) {
-    return null;
-  }
-  if (news.length === 0) {
-    return <p>記事がありません。</p>;
-  }
 
   return (
     <section

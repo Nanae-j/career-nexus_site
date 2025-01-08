@@ -52,13 +52,13 @@ const Main = forwardRef<MainRef, Props>(({ news }, ref) => {
       - img
       z-index: 2;
       */}
-      <About news={news} />
+      <About />
       {/*
       NEWS
       - Heading & List Area
       z-index: 2;
       */}
-      <News />
+      <News news={news} />
       <Service ref={serviceRef} />
       <Member ref={memberRef} />
     </main>
