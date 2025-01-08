@@ -8,10 +8,10 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-import RollText from "../utils/RollText";
-import { members } from "../utils/MemberList";
-import Logo from "../Logos/Logo";
-import Button from "../utils/Button";
+import RollText from "../../utils/RollText";
+import { members } from "../../utils/MemberList";
+import Logo from "../../Logos/Logo";
+import Button from "../../utils/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

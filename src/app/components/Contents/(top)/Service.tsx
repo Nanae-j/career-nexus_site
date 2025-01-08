@@ -7,11 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import clsx from "clsx";
 
-import Button from "../utils/Button";
-import CodingSVG from "../utils/CodingSVG";
-import ReceptionistSVG from "../utils/ReceptionistSVG";
-import FaceTimeSVG from "../utils/FaceTimeSVG";
-import RollText from "../utils/RollText";
+import Button from "../../utils/Button";
+import CodingSVG from "../../utils/CodingSVG";
+import ReceptionistSVG from "../../utils/ReceptionistSVG";
+import FaceTimeSVG from "../../utils/FaceTimeSVG";
+import RollText from "../../utils/RollText";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

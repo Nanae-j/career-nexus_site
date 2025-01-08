@@ -2,8 +2,8 @@ import { forwardRef } from "react";
 
 import clsx from "clsx";
 
-import { TextSplitter } from "../utils/TextSplitter";
-import Button from "../utils/Button";
+import { TextSplitter } from "../../utils/TextSplitter";
+import Button from "../../utils/Button";
 
 const Fv = forwardRef<HTMLElement | null>((props, ref) => {
   return (

@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 import { MdOutlineArrowForward } from "react-icons/md";
-import Button from "../utils/Button";
+import Button from "../../utils/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
