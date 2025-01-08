@@ -28,6 +28,7 @@ const Main = forwardRef<MainRef | null>((props, ref) => {
 
   return (
     <main className="relative">
+      <div className="absolute left-0 top-0 h-full w-full bg-[url('/images/noise-2.png')] bg-cover opacity-20"></div>
       {/* 
       Logo
       z-index: 1; */}

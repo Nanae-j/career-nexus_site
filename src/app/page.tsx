@@ -134,10 +134,8 @@ export default function Home() {
             },
           });
 
-          FV_scrollTL.to(".fv-logo", {
-            scale: small ? 1 : 0.63,
-          })
-            .to(
+          if (small) {
+            FV_scrollTL.to(
               ".fv-logo #out-side-path",
               {
                 fill: "#9AD5CD",
@@ -145,22 +143,52 @@ export default function Home() {
               },
               "<"
             )
-            .to(
-              ".fv-logo #middle-path",
-              {
-                fill: "#B4D0A9",
-                fillOpacity: "0.2",
-              },
-              "<"
-            )
-            .to(
-              ".fv-logo #inside-path",
-              {
-                fill: "#F8FFAA",
-                fillOpacity: 0.18,
-              },
-              "<"
-            );
+              .to(
+                ".fv-logo #middle-path",
+                {
+                  fill: "#B4D0A9",
+                  fillOpacity: "0.2",
+                },
+                "<"
+              )
+              .to(
+                ".fv-logo #inside-path",
+                {
+                  fill: "#F8FFAA",
+                  fillOpacity: 0.18,
+                },
+                "<"
+              );
+          } else {
+            FV_scrollTL.to(".fv-logo", {
+              scale: 0.63,
+            })
+              .to(
+                ".fv-logo #out-side-path",
+                {
+                  fill: "#9AD5CD",
+                  fillOpacity: "0.2",
+                },
+                "<"
+              )
+              .to(
+                ".fv-logo #middle-path",
+                {
+                  fill: "#B4D0A9",
+                  fillOpacity: "0.2",
+                },
+                "<"
+              )
+              .to(
+                ".fv-logo #inside-path",
+                {
+                  fill: "#F8FFAA",
+                  fillOpacity: 0.18,
+                },
+                "<"
+              );
+          }
+
           // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
         }
       }
