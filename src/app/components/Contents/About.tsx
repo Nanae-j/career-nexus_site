@@ -94,11 +94,6 @@ const About = () => {
           "-=0.5"
         );
       // **** ABOUT フェードイン ****
-
-      // クリーンアップ
-      // return () => {
-      //   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      // };
     },
     { scope: aboutRef }
   );
@@ -112,7 +107,7 @@ const About = () => {
         "lg:pb-[12.5rem] lg:pt-60"
       )}
     >
-      <div>
+      <div className="">
         <div
           className={clsx(
             "relative z-[2] mx-auto mb-20 w-[84%] max-w-[1200px]",
