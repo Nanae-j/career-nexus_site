@@ -1,18 +1,24 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle } from "react";
+import { useRef, forwardRef, useImperativeHandle, Suspense } from "react";
 
-import About from "./Contents/About";
-import Fv from "./Contents/Fv";
-import Logo from "./Logos/Logo";
-import News from "./Contents/News";
-import Service from "./Contents/Service";
-import Member from "./Contents/Member";
+import About from "./About";
+import Fv from "./Fv";
+import Logo from "../../Logos/Logo";
+import News from "./News";
+import Service from "./Service";
+import Member from "./Member";
 
-import { MainRef } from "./types";
+import { MainRef } from "../../types";
+import { getNewsList, MemberType, NewsType } from "@/app/_libs/microcms";
+
+type Props = {
+  news: NewsType[];
+  member: MemberType[];
+};
 
 // forwardRef の型をカスタム型として定義
-const Main = forwardRef<MainRef | null>((props, ref) => {
+const Main = forwardRef<MainRef, Props>(({ news, member }, ref) => {
   const logoRef = useRef<HTMLDivElement | null>(null);
   const memberRef = useRef<HTMLElement | null>(null);
   const serviceRef = useRef<HTMLElement | null>(null);
@@ -54,9 +60,9 @@ const Main = forwardRef<MainRef | null>((props, ref) => {
       - Heading & List Area
       z-index: 2;
       */}
-      <News />
+      <News news={news} />
       <Service ref={serviceRef} />
-      <Member ref={memberRef} />
+      <Member member={member} ref={memberRef} />
     </main>
   );
 });

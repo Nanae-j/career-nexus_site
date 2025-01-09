@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-import Button from "../utils/Button";
+import Button from "../../utils/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

@@ -9,11 +9,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 import { MdOutlineArrowForward } from "react-icons/md";
-import Button from "../utils/Button";
+import Button from "../../utils/Button";
+import { NewsType } from "@/app/_libs/microcms";
+import Date from "../../utils/Date";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const News = () => {
+type NewsProps = {
+  news: NewsType[];
+};
+
+export const revalidate = 60;
+
+const News = ({ news }: NewsProps) => {
   const newsRef = useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -57,6 +65,13 @@ const News = () => {
     { scope: newsRef }
   );
 
+  if (!news) {
+    return null;
+  }
+  if (news.length === 0) {
+    return <p>記事がありません。</p>;
+  }
+
   return (
     <section
       ref={newsRef}
@@ -73,39 +88,34 @@ const News = () => {
           News
         </h2>
         <ul className={clsx("list", "mb-12", "lg:mb-20")}>
-          <li className={clsx("mb-10")}>
-            <Link
-              href="/news"
-              className={clsx(
-                "group",
-                "block rounded-[0.65rem] bg-white p-6 duration-500",
-                "lg:flex lg:min-h-[4.5rem] lg:items-center lg:justify-between lg:gap-x-[20%] lg:rounded-md lg:px-10",
-                "hover:bg-black"
-              )}
-            >
-              <span
+          {news.map((article) => (
+            <li key={article.id} className={clsx("mb-10")}>
+              <Link
+                href={`/news/${article.id}`}
                 className={clsx(
-                  "font-mundial font-mundial-light tracking-wide",
-                  "group-hover:text-white"
+                  "group",
+                  "block rounded-[0.65rem] bg-white p-6 duration-500",
+                  "lg:flex lg:min-h-[4.5rem] lg:items-center lg:justify-between lg:gap-x-[20%] lg:rounded-md lg:px-10",
+                  "hover:bg-black"
                 )}
               >
-                <data value="2024.12.28">2024.12.28</data>
-              </span>
-              <span className="flex flex-grow items-center justify-between">
-                <span
-                  className={clsx(
-                    "font-kintoSans text-base font-kintoSans-regular",
-                    "group-hover:text-white"
-                  )}
-                >
-                  社員インタビューを追加しました！
+                <Date date={article.publishedAt} />
+                <span className="flex flex-grow items-center justify-between">
+                  <span
+                    className={clsx(
+                      "font-kintoSans text-base font-kintoSans-regular",
+                      "group-hover:text-white"
+                    )}
+                  >
+                    {article.title}
+                  </span>
+                  <span className={clsx("h-5 w-5", "group-hover:text-white")}>
+                    <MdOutlineArrowForward className="h-full w-full" />
+                  </span>
                 </span>
-                <span className={clsx("h-5 w-5", "group-hover:text-white")}>
-                  <MdOutlineArrowForward className="h-full w-full" />
-                </span>
-              </span>
-            </Link>
-          </li>
+              </Link>
+            </li>
+          ))}
         </ul>
         <div className={clsx("button", "ml-auto flex w-[166px]")}>
           <Button href="/news" label="Read More" />
