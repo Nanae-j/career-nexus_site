@@ -134,7 +134,6 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ member }, ref) => {
 
   return (
     <section
-      member={member}
       ref={ref}
       className={clsx(
         "member-section",
