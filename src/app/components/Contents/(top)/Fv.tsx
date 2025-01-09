@@ -15,7 +15,7 @@ const Fv = forwardRef<HTMLElement | null>((props, ref) => {
       )}
     >
       <div className="absolute left-1/2 top-0 h-screen w-full -translate-x-1/2 bg-slate-500 opacity-20"></div>
-      <div className="absolute left-1/2 top-0 z-[2] h-screen w-full -translate-x-1/2 bg-[url('/images/noise.png')] opacity-20"></div>
+      <div className="absolute left-1/2 top-0 z-[2] h-screen w-full -translate-x-1/2 bg-[url('/images/noise-2.png')] opacity-20"></div>
       <h1
         className={clsx(
           "fv-heading",
@@ -44,6 +44,6 @@ const Fv = forwardRef<HTMLElement | null>((props, ref) => {
   );
 });
 
-Fv.displayName = "Fv";
+Fv.displayName = "FV";
 
 export default Fv;

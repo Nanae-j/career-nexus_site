@@ -91,7 +91,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
-              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise-2.png')] opacity-20"></div>
               <p
                 className={clsx(
                   "absolute left-6 top-8 z-[2] font-mundial text-base font-mundial-demibold text-white",
@@ -154,7 +154,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
-              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise-2.png')] opacity-20"></div>
               <p
                 className={clsx(
                   "absolute left-6 top-8 z-[2] font-mundial text-base font-mundial-demibold text-white",
@@ -217,7 +217,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                 "xl:absolute xl:left-1/2 xl:top-0 xl:z-[2] xl:-translate-x-1/2"
               )}
             >
-              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise.png')] opacity-20"></div>
+              <div className="absolute-center absolute h-full w-full bg-[url('/images/noise-2.png')] opacity-20"></div>
               <p
                 className={clsx(
                   "absolute left-6 top-8 z-[2] font-mundial text-base font-mundial-demibold text-white",
