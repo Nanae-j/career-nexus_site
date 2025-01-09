@@ -12,10 +12,15 @@ import RollText from "../../utils/RollText";
 import { members } from "../../utils/MemberList";
 import Logo from "../../Logos/Logo";
 import Button from "../../utils/Button";
+import { MemberType } from "@/app/_libs/microcms";
+
+interface MemberProps {
+  member: MemberType[];
+}
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Member = forwardRef<HTMLElement | null>((props, ref) => {
+const Member = forwardRef<HTMLElement, MemberProps>(({ member }, ref) => {
   const memberRef = useRef<HTMLDivElement | null>(null);
 
   const rolltext_images = [
@@ -129,6 +134,7 @@ const Member = forwardRef<HTMLElement | null>((props, ref) => {
 
   return (
     <section
+      member={member}
       ref={ref}
       className={clsx(
         "member-section",

@@ -13,15 +13,16 @@ import Header from "@/app/components/Header";
 import Main from "@/app/components/Contents/(top)/Main";
 
 import { MainRef } from "@/app/components/types";
-import { NewsType } from "@/app/_libs/microcms";
+import { MemberType, NewsType } from "@/app/_libs/microcms";
 
 gsap.registerPlugin(useGSAP);
 
 type Props = {
   news: NewsType[];
+  member: MemberType[];
 };
 
-export default function Top({ news }: Props) {
+export default function Top({ news, member }: Props) {
   const footerRef = useRef<HTMLElement | null>(null);
   const mainRef = useRef<MainRef | null>(null);
 
@@ -310,7 +311,7 @@ export default function Top({ news }: Props) {
   return (
     <div className={clsx("content-wrapper", "opacity-0")}>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Main news={news} ref={mainRef} />
+      <Main news={news} member={member} ref={mainRef} />
       <Footer ref={footerRef} />
     </div>
   );

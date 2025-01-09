@@ -10,14 +10,15 @@ import Service from "./Service";
 import Member from "./Member";
 
 import { MainRef } from "../../types";
-import { getNewsList, NewsType } from "@/app/_libs/microcms";
+import { getNewsList, MemberType, NewsType } from "@/app/_libs/microcms";
 
 type Props = {
   news: NewsType[];
+  member: MemberType[];
 };
 
 // forwardRef の型をカスタム型として定義
-const Main = forwardRef<MainRef, Props>(({ news }, ref) => {
+const Main = forwardRef<MainRef, Props>(({ news, member }, ref) => {
   const logoRef = useRef<HTMLDivElement | null>(null);
   const memberRef = useRef<HTMLElement | null>(null);
   const serviceRef = useRef<HTMLElement | null>(null);
@@ -60,7 +61,7 @@ const Main = forwardRef<MainRef, Props>(({ news }, ref) => {
       */}
       <News news={news} />
       <Service ref={serviceRef} />
-      <Member ref={memberRef} />
+      <Member member={member} ref={memberRef} />
     </main>
   );
 });
