@@ -8,5 +8,5 @@ export default async function Home() {
 
   const member_data = await getMembersList({ limit: 50 });
 
-  return <Top news={data.contents} member={member_data.contents} />;
+  return <Top news={data.contents} members={member_data.contents} />;
 }

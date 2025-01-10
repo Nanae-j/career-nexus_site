@@ -19,10 +19,10 @@ gsap.registerPlugin(useGSAP);
 
 type Props = {
   news: NewsType[];
-  member: MemberType[];
+  members: MemberType[];
 };
 
-export default function Top({ news, member }: Props) {
+export default function Top({ news, members }: Props) {
   const footerRef = useRef<HTMLElement | null>(null);
   const mainRef = useRef<MainRef | null>(null);
 
@@ -311,7 +311,7 @@ export default function Top({ news, member }: Props) {
   return (
     <div className={clsx("content-wrapper", "opacity-0")}>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Main news={news} member={member} ref={mainRef} />
+      <Main news={news} members={members} ref={mainRef} />
       <Footer ref={footerRef} />
     </div>
   );

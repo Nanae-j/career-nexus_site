@@ -9,18 +9,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 import RollText from "../../utils/RollText";
-import { members } from "../../utils/MemberList";
+// import { members } from "../../utils/MemberList";
 import Logo from "../../Logos/Logo";
 import Button from "../../utils/Button";
 import { MemberType } from "@/app/_libs/microcms";
 
 interface MemberProps {
-  member: MemberType[];
+  members: MemberType[];
 }
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Member = forwardRef<HTMLElement, MemberProps>(({ member }, ref) => {
+const Member = forwardRef<HTMLElement, MemberProps>(({ members }, ref) => {
   const memberRef = useRef<HTMLDivElement | null>(null);
 
   const rolltext_images = [
@@ -132,6 +132,23 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ member }, ref) => {
     { scope: memberRef }
   );
 
+  function getMembersArray16(array: MemberType[]) {
+    const MAX_LENGTH = 16;
+
+    if (array.length >= MAX_LENGTH) {
+      return array.slice(0, MAX_LENGTH);
+    }
+
+    const repeatedArray = [];
+    while (repeatedArray.length < MAX_LENGTH) {
+      repeatedArray.push(...array);
+    }
+
+    return repeatedArray.slice(0, MAX_LENGTH);
+  }
+
+  const membersSetList = getMembersArray16(members);
+
   return (
     <section
       ref={ref}
@@ -183,15 +200,16 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ member }, ref) => {
                   "grid grid-cols-4 grid-rows-4 gap-2"
                 )}
               >
-                {members.map((item, index) => (
+                {membersSetList.map((member, index) => (
                   <li key={index}>
                     <div className="relative overflow-hidden rounded-xl pb-[133%]">
                       <Image
-                        src={item}
+                        src={member.image.url}
                         alt=""
                         width={284}
                         height={379}
                         className="absolute-center absolute w-full"
+                        priority
                       />
                     </div>
                   </li>
