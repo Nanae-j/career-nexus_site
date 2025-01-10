@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle, Suspense } from "react";
+import { useRef, forwardRef, useImperativeHandle } from "react";
 
 import About from "./About";
 import Fv from "./Fv";
@@ -10,7 +10,7 @@ import Service from "./Service";
 import Member from "./Member";
 
 import { MainRef } from "../../types";
-import { getNewsList, MemberType, NewsType } from "@/app/_libs/microcms";
+import { MemberType, NewsType } from "@/app/_libs/microcms";
 
 type Props = {
   news: NewsType[];
