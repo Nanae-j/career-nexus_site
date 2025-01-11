@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { forwardRef } from "react";
 
 import { MdArrowForward } from "react-icons/md";
@@ -8,12 +9,20 @@ import MenuLogo from "./Logos/MenuLogo";
 import navItems from "./utils/NavItems";
 
 const Footer = forwardRef<HTMLElement | null>((props, ref) => {
+  const pathname = usePathname(); // 現在のパスを取得
+
+  // 現在のパスがトップページでない場合にクラス名を変更
+  const isNotTopPage = pathname !== "/";
+
   return (
     <footer
       ref={ref}
       className={clsx(
-        "-mt-7 bg-[url('/images/footer-bg.jpg')] bg-cover bg-[center_bottom] pb-4 pt-40",
-        "lg:pt-64"
+        "bg-[url('/images/footer-bg.jpg')] bg-cover bg-[center_bottom] pb-4 pt-40",
+        "lg:pt-64",
+        {
+          "-mt-7": !isNotTopPage,
+        }
       )}
     >
       <Link

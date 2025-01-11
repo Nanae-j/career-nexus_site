@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import clsx from "clsx";
 
 export default function NewsLayout({
   children,
@@ -14,7 +15,9 @@ export default function NewsLayout({
   return (
     <div>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className="mx-auto w-[90%] max-w-[1600px]">{children}</div>
+      <div className={clsx("mx-auto w-[90%] max-w-[1600px] pt-32", "lg:pt-56")}>
+        {children}
+      </div>
       <Footer />
     </div>
   );
