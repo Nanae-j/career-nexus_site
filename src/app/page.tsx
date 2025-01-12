@@ -1,4 +1,4 @@
-import Top from "./components/Contents/(top)/Top";
+import Top from "./components/Contents/top/Top";
 import { getMembersList, getNewsList } from "./_libs/microcms";
 
 export const revalidate = 60;

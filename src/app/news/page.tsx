@@ -1,4 +1,4 @@
-import NewsList from "../components/Contents/(news)/NewsList";
+import NewsList from "../components/Contents/news/NewsList";
 import { getNewsList } from "../_libs/microcms";
 import Sheet from "../components/utils/Sheet";
 import LowerTitle from "../components/utils/LowerTitle";
@@ -11,7 +11,7 @@ export default async function page() {
 
   return (
     <Sheet>
-      <LowerTitle title="News" />
+      <LowerTitle title="NEWS" />
       <div className="mb-28">
         <BreadCrumb />
         <NewsList news={news} />

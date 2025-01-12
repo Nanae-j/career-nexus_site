@@ -24,6 +24,7 @@ export type MemberType = {
   name: string;
   position?: string;
   image: MicroCMSImage;
+  message?: string;
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {

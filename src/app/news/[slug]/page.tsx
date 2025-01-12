@@ -3,8 +3,8 @@ import BreadCrumb from "@/app/components/utils/BreadCrumb";
 import LowerTitle from "@/app/components/utils/LowerTitle";
 import Sheet from "@/app/components/utils/Sheet";
 import Date from "@/app/components/utils/Date";
-import Category from "@/app/components/Contents/(news)/Category";
-import NewsContent from "@/app/components/Contents/(news)/NewsContent";
+import Category from "@/app/components/Contents/news/Category";
+import NewsContent from "@/app/components/Contents/news/NewsContent";
 import Image from "next/image";
 
 interface Props {

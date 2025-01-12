@@ -3,7 +3,9 @@ interface Props {
 }
 
 const Sheet = ({ children }: Props) => {
-  return <div className="mx-auto max-w-[1150px]">{children}</div>;
+  return (
+    <div className="mx-auto max-w-[1150px] font-kintoSans">{children}</div>
+  );
 };
 
 export default Sheet;

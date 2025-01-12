@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
-import Main from "@/app/components/Contents/(top)/Main";
+import Main from "@/app/components/Contents/top/Main";
 
 import { MainRef } from "@/app/components/types";
 import { MemberType, NewsType } from "@/app/_libs/microcms";
