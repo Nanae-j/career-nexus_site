@@ -6,7 +6,6 @@ import Date from "@/app/components/utils/Date";
 import Category from "@/app/components/Contents/news/Category";
 import NewsContent from "@/app/components/Contents/news/NewsContent";
 import Image from "next/image";
-
 interface Props {
   params: {
     slug: string;
