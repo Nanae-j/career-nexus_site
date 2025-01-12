@@ -15,9 +15,11 @@ export default function NewsLayout({
   return (
     <div>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className={clsx("mx-auto w-[90%] max-w-[1600px] pt-32", "lg:pt-56")}>
+      <main
+        className={clsx("mx-auto w-[90%] max-w-[1600px] pt-32", "lg:pt-56")}
+      >
         {children}
-      </div>
+      </main>
       <Footer />
     </div>
   );

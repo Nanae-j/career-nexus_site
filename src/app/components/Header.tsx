@@ -28,15 +28,12 @@ function Header({ isOpen, setIsOpen }: HeaderProps) {
           "lg:px-10"
         )}
       >
-        <Link
-          href="/"
-          className={clsx(
-            "w-36 min-w-[130px] max-w-[163px] duration-700",
-            "hover:invert-[1]"
-          )}
-        >
-          <MenuLogo />
-        </Link>
+        <h1 className="w-36 min-w-[130px] max-w-[163px]">
+          <span className="sr-only">Career Nexus</span>
+          <Link href="/" className={clsx("duration-700", "hover:invert-[1]")}>
+            <MenuLogo />
+          </Link>
+        </h1>
 
         <nav
           className={clsx(
