@@ -38,7 +38,7 @@ const BreadCrumb = ({ customLabel }: BreadCrumbProps) => {
   // TOP を追加
   breadcrumbs.unshift({ label: "TOP", href: "/" });
 
-  console.log(breadcrumbs);
+  // console.log(breadcrumbs);
 
   return (
     <ul

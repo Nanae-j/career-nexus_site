@@ -19,8 +19,6 @@ type NewsProps = {
   news: NewsType[];
 };
 
-export const revalidate = 60;
-
 const News = ({ news }: NewsProps) => {
   const newsRef = useRef<HTMLElement | null>(null);
 

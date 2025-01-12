@@ -5,7 +5,7 @@ import type {
   MicroCMSListContent,
 } from "microcms-js-sdk";
 
-export type Category = {
+export type CategoryType = {
   name: string;
 } & MicroCMSListContent;
 
@@ -15,7 +15,7 @@ export type NewsType = {
   description: string;
   content: string;
   thumbnail?: MicroCMSImage;
-  category: Category;
+  category: CategoryType;
   publishAt: string;
   createAt: string;
 } & MicroCMSListContent;

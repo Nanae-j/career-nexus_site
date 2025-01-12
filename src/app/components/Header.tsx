@@ -44,7 +44,12 @@ function Header({ isOpen, setIsOpen }: HeaderProps) {
           <ul className="flex items-center justify-center">
             {navItems.map(({ label, href }, index) => (
               <li key={index} className="px-[2.5%] py-5">
-                <Link href={href}>{label}</Link>
+                <Link
+                  href={href}
+                  className="duration-700 hover:text-main-green"
+                >
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>
