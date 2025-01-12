@@ -1,7 +1,7 @@
 import Top from "./components/Contents/(top)/Top";
 import { getMembersList, getNewsList } from "./_libs/microcms";
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function Home() {
   const TOP_NEWS_LIMIT = 3;
