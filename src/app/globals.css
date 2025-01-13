@@ -8,3 +8,44 @@ html {
 html.wf-active {
   visibility: visible;
 }
+
+:root {
+  --viewport: 1920; /* ビューポート幅の例 */
+  --scale: 0.8; /* 任意のスケール値 */
+  --drawer-padding: 20px; /* パディング */
+  --header--height: 60px; /* ヘッダーの高さ */
+  --gap--xl: 16px; /* ギャップ */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --token-viewport: 1440;
+    --viewport: 1920;
+    --contents--padding--side: calc(
+      100vw * 43 / var(--viewport) * var(--scale)
+    );
+    --header--height: calc(100vw * 130 / var(--viewport) * var(--scale));
+    --drawer-padding-num: 20;
+    --drawer-padding: calc(var(--drawer-padding-num) * 1px);
+    --floating-menu--width: max(
+      clamp(168px, 97.143px + 9.226vw, 230px),
+      calc(100vw * 280 / var(--viewport))
+    );
+    --card-width-layout-wide: calc(
+      (100% - var(--gap--x11l) * 2) / 3 * 2 + var(--gap--x11l)
+    );
+    --card-width-layout-nav: calc(
+      (var(--contents--wide-width) - var(--gap--x11l) * 2) / 3 * 2 +
+        var(--gap--x11l)
+    );
+  }
+}
+
+/* styles/globals.css */
+@layer components {
+  .custom-grid {
+    grid-template-columns:
+      repeat(2, calc(100vw * 650 / var(--viewport) * var(--scale)))
+      1fr calc(var(--drawer-padding) + var(--header--height) - var(--gap--xl));
+  }
+}

@@ -18,8 +18,8 @@ const BreadCrumb = ({ customLabel }: BreadCrumbProps) => {
     news: "News",
     about: "About Us",
     contact: "Contact",
-    products: "Products",
-    category: "Category",
+    member: "Member",
+    service: "Service",
   };
 
   // パンくずデータを生成
@@ -43,8 +43,8 @@ const BreadCrumb = ({ customLabel }: BreadCrumbProps) => {
   return (
     <ul
       className={clsx(
-        "mb-5 flex flex-wrap items-center gap-2 font-mundial text-xs font-mundial-regular text-main-black",
-        "lg:mb-8 lg:text-base"
+        "mb-5 flex flex-wrap items-center gap-2 font-mundial text-[min(3.2vw,1rem)] font-mundial-regular text-main-black",
+        "lg:mb-8"
       )}
     >
       {breadcrumbs.map((crumb, index) => (
