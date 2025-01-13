@@ -140,7 +140,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                     企業には即戦力となる専門人材を、求職者にはスキルを最大限活かせる職場を。IT、クリエイティブの分野で、双方にとって最適なマッチングを実現します。
                   </p>
                   <div className="w-[166px]">
-                    <Button href="/service" label="Read More" />
+                    <Button href="/service#service01" label="Read More" />
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                     企業には成長を支える新しい力を、求職者には理想のキャリアを。新卒からキャリアチェンジを目指す方まで、それぞれのニーズに合わせた採用支援を提供します。
                   </p>
                   <div className="w-[166px]">
-                    <Button href="/service" label="Read More" />
+                    <Button href="/service#service02" label="Read More" />
                   </div>
                 </div>
               </div>
@@ -266,7 +266,7 @@ const Service = forwardRef<HTMLElement | null>((props, ref) => {
                     企業には国際的な競争力を、外国人求職者には安心して働ける環境を。ビザ取得、文化適応、生活サポートを通じて、多様性を活かした職場づくりをサポートします。
                   </p>
                   <div className="w-[166px]">
-                    <Button href="/service" label="Read More" />
+                    <Button href="/service#service03" label="Read More" />
                   </div>
                 </div>
               </div>

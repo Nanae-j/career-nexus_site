@@ -42,7 +42,7 @@ const NewsList = ({ news }: NewsListProps) => {
                 <span className="flex flex-grow items-center justify-between">
                   <span
                     className={clsx(
-                      "font-kintoSans text-base font-kintoSans-regular",
+                      "font-kintoSans text-[min(4.27vw,1.3rem)] font-kintoSans-regular",
                       "group-hover:text-white"
                     )}
                   >
