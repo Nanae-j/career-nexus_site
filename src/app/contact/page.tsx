@@ -9,15 +9,23 @@ import {
   FormLabel,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import BreadCrumb from "../components/utils/BreadCrumb";
 import LowerTitle from "../components/utils/LowerTitle";
 import Sheet from "../components/utils/Sheet";
 import { theme } from "@/app/components/theme/theme";
 import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactSchema } from "../validations/scheme";
 
 const page = () => {
-  const { control } = useForm({
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm({
     defaultValues: {
       name: "",
       furigana: "",
@@ -25,13 +33,27 @@ const page = () => {
       position: "",
       tel: "",
       mail: "",
-      staffing: false,
-      recruitment_support: false,
-      foreign_employment: false,
-      others: false,
+      inquires: {
+        staffing: false,
+        recruitment_support: false,
+        foreign_employment: false,
+        others: false,
+      },
       inquiry_detail: "",
     },
+    resolver: zodResolver(contactSchema),
   });
+
+  console.log(errors);
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
+  const inquires = watch("inquires");
+  // inquiresの型を取得する
+  type InquireKeys = keyof typeof inquires;
+
   return (
     <Sheet>
       <LowerTitle title="CONTACT" />
@@ -39,7 +61,7 @@ const page = () => {
         <BreadCrumb />
       </div>
       <div className="mb-24">
-        <Box component="form">
+        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Stack
             spacing={6}
             sx={{
@@ -54,11 +76,12 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="お名前"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.name}
+                  helperText={errors.name?.message}
                 />
               )}
             />
@@ -70,11 +93,12 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="ふりがな"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.furigana}
+                  helperText={errors.furigana?.message}
                 />
               )}
             />
@@ -86,11 +110,12 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="会社名/組織名"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.company}
+                  helperText={errors.company?.message}
                 />
               )}
             />
@@ -118,11 +143,12 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="電話番号"
                   type="tel"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.tel}
+                  helperText={errors.tel?.message}
                 />
               )}
             />
@@ -134,67 +160,52 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="メールアドレス"
                   type="email"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.mail}
+                  helperText={errors.mail?.message}
                 />
               )}
             />
 
             <Box>
-              <FormLabel required component="legend" sx={{ mb: 2 }}>
+              <FormLabel
+                component="legend"
+                sx={{ mb: 2 }}
+                error={!!errors.inquires}
+              >
                 お問い合わせの種類
               </FormLabel>
+              {errors.inquires && (
+                <Typography color="error">
+                  {errors.inquires.root?.message}
+                </Typography>
+              )}
               <FormGroup>
-                <Controller
-                  name="staffing"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      {...field}
-                      control={<Checkbox checked={field.value} />}
-                      label="人材派遣について"
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="recruitment_support"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      {...field}
-                      control={<Checkbox checked={field.value} />}
-                      label="採用サポートについて"
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="foreign_employment"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      {...field}
-                      control={<Checkbox checked={field.value} />}
-                      label="外国人材の雇用について"
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="others"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      {...field}
-                      control={<Checkbox checked={field.value} />}
-                      label="その他"
-                    />
-                  )}
-                />
+                {Object.keys(inquires).map((key) => (
+                  <Controller
+                    key={key}
+                    name={`inquires.${key}` as `inquires.${InquireKeys}`}
+                    control={control}
+                    render={({ field }) => (
+                      <FormControlLabel
+                        {...field}
+                        control={<Checkbox checked={field.value} />}
+                        label={
+                          key === "staffing"
+                            ? "人材派遣について"
+                            : key === "recruitment_support"
+                              ? "採用サポートについて"
+                              : key === "foreign_employment"
+                                ? "外国人材の雇用について"
+                                : "その他"
+                        }
+                      />
+                    )}
+                  />
+                ))}
               </FormGroup>
             </Box>
 
@@ -204,13 +215,14 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  required
                   label="お問い合わせの詳細"
                   type="text"
                   multiline
                   rows={10}
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
+                  error={!!errors.inquiry_detail}
+                  helperText={errors.inquiry_detail?.message}
                 />
               )}
             />
