@@ -22,4 +22,14 @@ export const theme = createTheme({
       "2xl": 1536,
     },
   },
+  typography: {
+    fontFamily: ["kinto-sans, sans-serif"].join(","),
+  },
+  palette: {
+    primary: {
+      main: "#93CA88",
+      light: "#B0F2A3",
+      dark: "#75A16D",
+    },
+  },
 });

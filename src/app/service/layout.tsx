@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import clsx from "clsx";
 
-export default function NewsLayout({
+export default function ServiceLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
