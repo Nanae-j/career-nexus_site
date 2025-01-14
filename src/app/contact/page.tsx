@@ -1,15 +1,12 @@
+"use client";
+
 import {
   Box,
   Button,
   Checkbox,
-  FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
   Stack,
   TextField,
 } from "@mui/material";
@@ -17,10 +14,24 @@ import BreadCrumb from "../components/utils/BreadCrumb";
 import LowerTitle from "../components/utils/LowerTitle";
 import Sheet from "../components/utils/Sheet";
 import { theme } from "@/app/components/theme/theme";
-import { useState } from "react";
-import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
+import { Controller, useForm } from "react-hook-form";
 
 const page = () => {
+  const { control } = useForm({
+    defaultValues: {
+      name: "",
+      furigana: "",
+      company: "",
+      position: "",
+      tel: "",
+      mail: "",
+      staffing: false,
+      recruitment_support: false,
+      foreign_employment: false,
+      others: false,
+      inquiry_detail: "",
+    },
+  });
   return (
     <Sheet>
       <LowerTitle title="CONTACT" />
@@ -36,59 +47,100 @@ const page = () => {
               mx: "auto",
             }}
           >
-            <TextField
-              required
-              id="name"
+            {/* お名前 */}
+            <Controller
               name="name"
-              label="お名前"
-              type="text"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="お名前"
+                  type="text"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
-            <TextField
-              required
-              id="furigana"
+
+            {/* ふりがな */}
+            <Controller
               name="furigana"
-              label="ふりがな"
-              type="text"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="ふりがな"
+                  type="text"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
-            <TextField
-              required
-              id="company"
+
+            {/* 会社名/組織名 */}
+            <Controller
               name="company"
-              label="会社名/組織名"
-              type="text"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="会社名/組織名"
+                  type="text"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
-            <TextField
-              id="position"
+
+            {/* 部署名/役職名 */}
+            <Controller
               name="position"
-              label="部署名/役職"
-              type="text"
-              placeholder="人事部 部長"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="部署名/役職"
+                  type="text"
+                  placeholder="人事部 部長"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
-            <TextField
-              required
-              id="tel"
+
+            {/* 電話番号 */}
+            <Controller
               name="tel"
-              label="電話番号"
-              type="tel"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="電話番号"
+                  type="tel"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
-            <TextField
-              required
-              id="mail"
+
+            {/* メールアドレス */}
+            <Controller
               name="mail"
-              label="メールアドレス"
-              type="email"
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="メールアドレス"
+                  type="email"
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
 
             <Box>
@@ -96,40 +148,85 @@ const page = () => {
                 お問い合わせの種類
               </FormLabel>
               <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox name="staffing" />}
-                  label="人材派遣について"
+                <Controller
+                  name="staffing"
+                  control={control}
+                  render={({ field }) => (
+                    <FormControlLabel
+                      {...field}
+                      control={<Checkbox checked={field.value} />}
+                      label="人材派遣について"
+                    />
+                  )}
                 />
-                <FormControlLabel
-                  control={<Checkbox name="recruitment_support" />}
-                  label="採用サポートについて"
+
+                <Controller
+                  name="recruitment_support"
+                  control={control}
+                  render={({ field }) => (
+                    <FormControlLabel
+                      {...field}
+                      control={<Checkbox checked={field.value} />}
+                      label="採用サポートについて"
+                    />
+                  )}
                 />
-                <FormControlLabel
-                  control={<Checkbox name="foreign_employment" />}
-                  label="外国人材の雇用について"
+
+                <Controller
+                  name="foreign_employment"
+                  control={control}
+                  render={({ field }) => (
+                    <FormControlLabel
+                      {...field}
+                      control={<Checkbox checked={field.value} />}
+                      label="外国人材の雇用について"
+                    />
+                  )}
                 />
-                <FormControlLabel
-                  control={<Checkbox name="others" />}
-                  label="その他"
+
+                <Controller
+                  name="others"
+                  control={control}
+                  render={({ field }) => (
+                    <FormControlLabel
+                      {...field}
+                      control={<Checkbox checked={field.value} />}
+                      label="その他"
+                    />
+                  )}
                 />
               </FormGroup>
             </Box>
 
-            <TextField
-              required
-              id="inquiry-detail"
+            <Controller
               name="inquiry_detail"
-              label="お問い合わせの詳細"
-              type="text"
-              multiline
-              rows={10}
-              sx={{ borderColor: theme.palette.primary.main }}
-              fullWidth
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  required
+                  label="お問い合わせの詳細"
+                  type="text"
+                  multiline
+                  rows={10}
+                  sx={{ borderColor: theme.palette.primary.main }}
+                  fullWidth
+                />
+              )}
             />
 
-            <Button variant="contained" type="submit" sx={{ p: 2 }}>
-              送信
-            </Button>
+            <Box sx={{ textAlign: "center" }}>
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ p: 2, maxWidth: "500px" }}
+                fullWidth
+              >
+                <span className="text-base tracking-wider lg:text-xl">
+                  送信
+                </span>
+              </Button>
+            </Box>
           </Stack>
         </Box>
       </div>
