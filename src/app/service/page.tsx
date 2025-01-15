@@ -4,11 +4,9 @@ import BreadCrumb from "../components/utils/BreadCrumb";
 import CodingSVG from "../components/utils/CodingSVG";
 import ReceptionistSVG from "../components/utils/ReceptionistSVG";
 import FaceTimeSVG from "../components/utils/FaceTimeSVG";
-import { IoPerson } from "react-icons/io5";
-import clsx from "clsx";
 import ServiceQA from "../components/Contents/service/ServiceQA";
 
-export default async function page() {
+export default async function Page() {
   return (
     <Sheet>
       <LowerTitle title="SERVICE" />

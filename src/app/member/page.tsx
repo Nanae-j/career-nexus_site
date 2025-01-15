@@ -7,7 +7,7 @@ import clsx from "clsx";
 
 export const revalidate = 60;
 
-export default async function page() {
+export default async function Page() {
   const { contents: members } = await getMembersList();
 
   return (

@@ -5,7 +5,7 @@ import GoogleMap from "../components/Contents/about/GoogleMap";
 import clsx from "clsx";
 import Transition from "../components/utils/Transition";
 
-export default function page() {
+export default function Page() {
   return (
     <Transition>
       <div className="mx-auto w-[90%] max-w-[1150px]">

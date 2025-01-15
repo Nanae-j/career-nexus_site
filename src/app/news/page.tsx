@@ -6,7 +6,7 @@ import BreadCrumb from "../components/utils/BreadCrumb";
 
 export const revalidate = 60;
 
-export default async function page() {
+export default async function Page() {
   const { contents: news } = await getNewsList();
 
   return (

@@ -17,9 +17,10 @@ import Sheet from "../components/utils/Sheet";
 import { theme } from "@/app/components/theme/theme";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactSchema } from "../validations/scheme";
+import { contactSchema } from "../_validations/scheme";
+import { sendFormDataToHubSpot } from "../_actions/contact";
 
-const page = () => {
+export default function Page() {
   const {
     control,
     formState: { errors },
@@ -43,11 +44,22 @@ const page = () => {
     },
     resolver: zodResolver(contactSchema),
   });
+  interface FormData {
+    name: string;
+    furigana: string;
+    company: string;
+    position: string;
+    tel: string;
+    mail: string;
+    inquiry_detail: string;
+    // inquires: {
+    //   [key: string]: boolean;
+    // };
+  }
 
-  console.log(errors);
-
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: FormData) => {
+    // console.log(data);
+    sendFormDataToHubSpot(data);
   };
 
   const inquires = watch("inquires");
@@ -76,7 +88,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="お名前"
+                  label="お名前*"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
@@ -93,7 +105,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="ふりがな"
+                  label="ふりがな*"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
@@ -110,7 +122,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="会社名/組織名"
+                  label="会社名/組織名*"
                   type="text"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
@@ -143,7 +155,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="電話番号"
+                  label="電話番号*"
                   type="tel"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
@@ -160,7 +172,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="メールアドレス"
+                  label="メールアドレス*"
                   type="email"
                   sx={{ borderColor: theme.palette.primary.main }}
                   fullWidth
@@ -176,7 +188,7 @@ const page = () => {
                 sx={{ mb: 2 }}
                 error={!!errors.inquires}
               >
-                お問い合わせの種類
+                お問い合わせの種類*
               </FormLabel>
               {errors.inquires && (
                 <Typography color="error">
@@ -215,7 +227,7 @@ const page = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="お問い合わせの詳細"
+                  label="お問い合わせの詳細*"
                   type="text"
                   multiline
                   rows={10}
@@ -244,6 +256,4 @@ const page = () => {
       </div>
     </Sheet>
   );
-};
-
-export default page;
+}
