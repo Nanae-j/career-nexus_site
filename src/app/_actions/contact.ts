@@ -1,3 +1,5 @@
+"use server";
+
 interface FormData {
   name: string;
   furigana: string;
@@ -13,12 +15,6 @@ interface FormData {
 
 export const sendFormDataToHubSpot = async (data: FormData) => {
   try {
-    // const inquiresFields = Object.keys(data.inquires).map((key) => ({
-    //   objectTypeId: "0-1",
-    //   name: key, // HubSpotフィールド名（staffing, recruitment_support, など）
-    //   value: data.inquires[key] ? "true" : "false", // チェックボックスの値
-    // }));
-
     const response = await fetch(
       `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}`,
       {
@@ -62,6 +58,11 @@ export const sendFormDataToHubSpot = async (data: FormData) => {
               objectTypeId: "0-1",
               name: "message",
               value: data.inquiry_detail,
+            },
+            {
+              objectTypeId: "0-1",
+              name: "inquires_type",
+              value: "staffing;recruitment_support",
             },
           ],
         }),
