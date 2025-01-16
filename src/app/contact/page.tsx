@@ -18,7 +18,7 @@ import { theme } from "@/app/components/theme/theme";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema } from "../_validations/scheme";
-import { sendFormDataToHubSpot } from "../_actions/contact";
+import { sendFormDataToHubSpot, FormData } from "../_actions/contact";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -54,18 +54,6 @@ export default function Page() {
     },
     resolver: zodResolver(contactSchema),
   });
-  interface FormData {
-    name: string;
-    furigana: string;
-    company: string;
-    position: string;
-    tel: string;
-    mail: string;
-    inquiry_detail: string;
-    inquires: {
-      [key: string]: boolean;
-    };
-  }
 
   const onSubmit = async (data: FormData) => {
     try {

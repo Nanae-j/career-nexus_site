@@ -20,6 +20,7 @@ const BreadCrumb = ({ customLabel }: BreadCrumbProps) => {
     contact: "Contact",
     member: "Member",
     service: "Service",
+    privacy: "Privacy",
   };
 
   // パンくずデータを生成

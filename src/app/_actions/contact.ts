@@ -1,6 +1,6 @@
 "use server";
 
-interface FormData {
+export interface FormData {
   name: string;
   furigana: string;
   company: string;
