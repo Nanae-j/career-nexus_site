@@ -19,8 +19,11 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema } from "../_validations/scheme";
 import { sendFormDataToHubSpot } from "../_actions/contact";
+import { useState } from "react";
 
 export default function Page() {
+  const [isSubmitted, setIsSubmitted] = useState(false); // 送信成功状態
+  const [error, setError] = useState<string | null>(null); // エラー状態
   const {
     control,
     formState: { errors },
@@ -52,19 +55,45 @@ export default function Page() {
     tel: string;
     mail: string;
     inquiry_detail: string;
-    // inquires: {
-    //   [key: string]: boolean;
-    // };
+    inquires: {
+      [key: string]: boolean;
+    };
   }
 
-  const onSubmit = (data: FormData) => {
-    // console.log(data);
+  const onSubmit = async (data: FormData) => {
     sendFormDataToHubSpot(data);
+    try {
+      await sendFormDataToHubSpot(data);
+      setIsSubmitted(true); // 成功時に状態を変更
+    } catch (err) {
+      setError("送信に失敗しました。もう一度お試しください。");
+      console.error(err);
+    }
   };
 
   const inquires = watch("inquires");
   // inquiresの型を取得する
   type InquireKeys = keyof typeof inquires;
+
+  if (isSubmitted) {
+    return (
+      <Sheet>
+        <LowerTitle title="CONTACT" />
+        <div className="mb-28">
+          <BreadCrumb />
+        </div>
+        <div className="mb-24 flex h-[50vh] items-center justify-center border border-main-green px-5">
+          <p className="text-center text-[min(4vw,20px)] leading-relaxed">
+            お問い合わせいただき、誠にありがとうございます。
+            <br />
+            送信が完了いたしました。担当者より3営業日以内にご連絡させていただきます。
+            <br />
+            今しばらくお待ちください。
+          </p>
+        </div>
+      </Sheet>
+    );
+  }
 
   return (
     <Sheet>
@@ -239,6 +268,13 @@ export default function Page() {
               )}
             />
 
+            {error && (
+              <Box>
+                <Typography color="error" align="center" sx={{ mb: 4 }}>
+                  {error}
+                </Typography>
+              </Box>
+            )}
             <Box sx={{ textAlign: "center" }}>
               <Button
                 variant="contained"
