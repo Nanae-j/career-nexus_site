@@ -19,11 +19,18 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema } from "../_validations/scheme";
 import { sendFormDataToHubSpot } from "../_actions/contact";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [isSubmitted, setIsSubmitted] = useState(false); // 送信成功状態
   const [error, setError] = useState<string | null>(null); // エラー状態
+
+  useEffect(() => {
+    if (isSubmitted) {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // 画面を一番上にスクロール
+    }
+  }, [isSubmitted]);
+
   const {
     control,
     formState: { errors },
@@ -61,7 +68,6 @@ export default function Page() {
   }
 
   const onSubmit = async (data: FormData) => {
-    sendFormDataToHubSpot(data);
     try {
       await sendFormDataToHubSpot(data);
       setIsSubmitted(true); // 成功時に状態を変更
