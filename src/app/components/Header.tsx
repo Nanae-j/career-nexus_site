@@ -74,14 +74,14 @@ function Header({ isOpen, setIsOpen }: HeaderProps) {
           >
             <span
               className={clsx(
-                "absolute left-1/2 block h-[1px] w-full origin-center -translate-x-1/2 -translate-y-1 bg-white duration-200",
-                isOpen && "translate-y-0 rotate-45"
+                "absolute block h-[1px] w-full bg-white duration-200",
+                isOpen ? "translate-y-0 rotate-45" : "-translate-y-1"
               )}
             ></span>
             <span
               className={clsx(
-                "absolute left-1/2 block h-[1px] w-full origin-center -translate-x-1/2 translate-y-1 bg-white duration-200",
-                isOpen && "translate-y-0 -rotate-45"
+                "absolute block h-[1px] w-full bg-white duration-200",
+                isOpen ? "translate-y-0 -rotate-45" : "translate-y-1"
               )}
             ></span>
           </button>
