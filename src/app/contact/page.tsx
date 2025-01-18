@@ -96,6 +96,13 @@ export default function Page() {
         <BreadCrumb />
       </div>
       <div className="mb-24">
+        <p className="mx-auto mb-16 w-[90%] text-[min(4vw,20px)] leading-loose">
+          以下の項目に必要事項をご入力いただき、内容をご確認の上、「送信」ボタンを押してください。
+          <br />
+          ※印は必須項目です。
+          <br />
+          ご提供いただいた情報は、お問い合わせの対応およびご連絡以外の目的では使用いたしません。
+        </p>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Stack
             spacing={6}

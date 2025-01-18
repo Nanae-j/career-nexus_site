@@ -20,6 +20,10 @@ const navItems: NavItem[] = [
     label: "News",
     href: "/news",
   },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
 ];
 
 export default navItems;

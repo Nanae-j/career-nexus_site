@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
 
@@ -16,6 +19,9 @@ function Header({ isOpen, setIsOpen }: HeaderProps) {
   const onClick = () => {
     setIsOpen((prevState) => !prevState);
   };
+
+  const path = usePathname();
+
   return (
     <header
       className={clsx("header", "fixed top-10 z-[999] w-[100%] text-white")}
@@ -91,8 +97,9 @@ function Header({ isOpen, setIsOpen }: HeaderProps) {
       <nav
         className={clsx(
           "sp-nav",
-          "fixed left-auto top-14 h-[100vh] w-full bg-black bg-opacity-70 p-8 duration-200",
-          isOpen ? "right-0" : "-right-[100%]"
+          "fixed left-auto h-[100vh] w-full bg-black bg-opacity-70 p-8 duration-200",
+          isOpen ? "right-0" : "-right-[100%]",
+          path != "/" ? "top-[6rem]" : "top-14"
         )}
       >
         <ul>
