@@ -34,6 +34,7 @@ export default function Top({ news, members }: Props) {
   useEffect(() => {
     // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
+    console.log("テスト");
     // ****** GSAPのプラグイン登録 *******
 
     // ******

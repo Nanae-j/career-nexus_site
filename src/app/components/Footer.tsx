@@ -62,7 +62,7 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
         <div
           className={clsx(
             "mx-auto w-[90%]",
-            "lg:flex lg:w-[71%] lg:items-start lg:justify-between lg:gap-x-7"
+            "lg:flex lg:w-[71%] lg:items-start lg:justify-between lg:gap-x-14"
           )}
         >
           <Link
@@ -80,7 +80,7 @@ const Footer = forwardRef<HTMLElement | null>((props, ref) => {
             <ul
               className={clsx(
                 "grid grid-cols-2 grid-rows-2 gap-y-6 text-left font-mundial text-lg font-mundial-light tracking-wide text-white",
-                "lg:grid-cols-4 lg:grid-rows-1 lg:gap-y-0 lg:text-right"
+                "lg:grid-cols-4 lg:grid-rows-1 lg:gap-x-3 lg:gap-y-5"
               )}
             >
               {navItems.map(({ label, href }, index) => (
