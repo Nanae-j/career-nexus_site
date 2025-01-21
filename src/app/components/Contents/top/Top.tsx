@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { theme } from "@/app/components/theme/theme";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -31,27 +33,32 @@ export default function Top({ news, members }: Props) {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const isPC = useMediaQuery(theme.breakpoints.up("md")); // 768px以上かどうか
+
   useEffect(() => {
-    // Initialize a new Lenis instance for smooth scrolling
-    const lenis = new Lenis();
-    // ****** GSAPのプラグイン登録 *******
+    if (isPC) {
+      console.log(isPC);
+      // Initialize a new Lenis instance for smooth scrolling
+      const lenis = new Lenis();
+      // ****** GSAPのプラグイン登録 *******
 
-    // ******
-    // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
-    // *******
+      // ******
+      // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
+      // *******
 
-    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-    });
+      // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+      // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+      });
 
-    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-    gsap.ticker.lagSmoothing(0);
-    // ******
-    // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
-    // *******
-  }, []);
+      // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+      gsap.ticker.lagSmoothing(0);
+      // ******
+      // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
+      // *******
+    }
+  }, [isPC]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
