@@ -23,7 +23,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         viewBox="0 0 1218 1201"
       >
         <mask
-          viewBox="0 0 1218 1201"
+          viewBox="0 0 1338 1270"
           x="0"
           y="0"
           maskUnits="userSpaceOnUse"
