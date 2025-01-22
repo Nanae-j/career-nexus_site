@@ -183,7 +183,7 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ members }, ref) => {
           >
             <div
               className={clsx(
-                "bg-memberFilterSP absolute-center absolute z-[2] w-full pb-[177%] opacity-80",
+                "absolute z-[2] w-full bg-memberFilterSP pb-[177%] opacity-80 absolute-center",
                 "md:bg-memberFilter md:pb-[70%]",
                 "lg:pb-[57%]"
               )}
@@ -208,7 +208,7 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ members }, ref) => {
                         alt=""
                         width={284}
                         height={379}
-                        className="absolute-center absolute w-full"
+                        className="absolute w-full absolute-center"
                         priority
                       />
                     </div>
