@@ -22,7 +22,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         fill="none"
         viewBox="0 0 1218 1201"
       >
-        <mask
+        {/* <mask
           viewBox="0 0 1338 1270"
           x="0"
           y="0"
@@ -30,7 +30,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
           style={{ maskType: "alpha" }}
         >
           <path fill="#D9D9D9" d="M.7.5h1216.8v1199.6H.7z"></path>
-        </mask>
+        </mask> */}
         <g mask="url(#a)">
           <g filter="url(#b)">
             <path
