@@ -59,38 +59,38 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ members }, ref) => {
             // **** MEMBER リストを動かす ****
 
             // **** MEMBER 背景のロゴのカラーチェンジ ****
-            const colorTL = gsap.timeline();
+            // const colorTL = gsap.timeline();
 
-            colorTL
-              .to(".member-logo #out-side-path", {
-                fill: "#9AD5CD",
-                fillOpacity: "0.2",
-                repeat: -1,
-                duration: 5,
-                yoyo: true,
-              })
-              .to(
-                ".member-logo #middle-path",
-                {
-                  fill: "#B4D0A9",
-                  fillOpacity: "0.2",
-                  repeat: -1,
-                  duration: 5,
-                  yoyo: true,
-                },
-                "<"
-              )
-              .to(
-                ".member-logo #inside-path",
-                {
-                  fill: "#F8FFAA",
-                  fillOpacity: 0.18,
-                  repeat: -1,
-                  duration: 5,
-                  yoyo: true,
-                },
-                "<"
-              );
+            // colorTL
+            //   .to(".member-logo #out-side-path", {
+            //     fill: "#9AD5CD",
+            //     fillOpacity: "0.2",
+            //     repeat: -1,
+            //     duration: 5,
+            //     yoyo: true,
+            //   })
+            //   .to(
+            //     ".member-logo #middle-path",
+            //     {
+            //       fill: "#B4D0A9",
+            //       fillOpacity: "0.2",
+            //       repeat: -1,
+            //       duration: 5,
+            //       yoyo: true,
+            //     },
+            //     "<"
+            //   )
+            //   .to(
+            //     ".member-logo #inside-path",
+            //     {
+            //       fill: "#F8FFAA",
+            //       fillOpacity: 0.18,
+            //       repeat: -1,
+            //       duration: 5,
+            //       yoyo: true,
+            //     },
+            //     "<"
+            //   );
             // **** MEMBER 背景のロゴのカラーチェンジ ****
 
             const MEMEBER_Fadein_scrollTL = gsap.timeline({

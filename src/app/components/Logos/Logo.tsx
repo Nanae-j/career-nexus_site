@@ -36,11 +36,9 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
 
         <g filter="url(#c)">
           <path
-            filter='url(#c)"'
             id="middle-path"
             fill="#2E98A4"
             fillOpacity="0.5"
-            style={{ willChange: "fill" }}
             d="M267.8 812c-119-190.6-58.5-425.5 133.3-545.3 107.5-67.1 250-79 366.8-29.2a26 26 0 0 1 13.5 33.5l-46 116.2a26 26 0 0 1-33.3 15.1c-69-27.3-138.1-33.6-209.5 11C383.5 481.4 360.8 604 428 711.5c67.1 107.6 187.8 142 297 73.9 65-40.7 97.6-101.2 105.1-182.9a26.7 26.7 0 0 1 28.3-24.6l123.3 9.1c13.8 1 25 12.8 24.5 26.7-6.1 130.2-74.5 246.7-189.3 318.4-192.1 120-430.3 70.2-549-120.1Z"
           ></path>
         </g>
@@ -49,7 +47,6 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
             id="inside-path"
             fill="#F8FFAA"
             fillOpacity="0.5"
-            style={{ willChange: "fill" }}
             d="M335.4 769.9c-93.2-149.4-45.8-333.4 104.4-427.2a318.3 318.3 0 0 1 287.4-22.9 20.3 20.3 0 0 1 10.6 26.3l-36 91a20.3 20.3 0 0 1-26.2 11.8c-54-21.4-108.1-26.3-164 8.6C426 511 408.2 607 460.8 691.2 513.5 775.5 608 802.4 693.5 749c51-31.8 76.5-79.2 82.5-143.2a20.9 20.9 0 0 1 22.1-19.3l96.6 7.1c10.8.8 19.6 10 19.2 21-4.8 101.9-58.4 193.2-148.3 249.4-150.5 94-337.1 55-430.2-94.1"
           ></path>
         </g>
@@ -76,10 +73,10 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
           </filter>
           <filter
             id="c"
-            width="959.5"
-            height="950.1"
-            x="126.8"
-            y="126.9"
+            width="959"
+            height="950"
+            x="126"
+            y="126"
             colorInterpolationFilters="sRGB"
             filterUnits="userSpaceOnUse"
           >
@@ -96,10 +93,10 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
           </filter>
           <filter
             id="d"
-            width="786.4"
+            width="786"
             height="779"
-            x="207.6"
-            y="215.8"
+            x="207"
+            y="215"
             colorInterpolationFilters="sRGB"
             filterUnits="userSpaceOnUse"
           >
