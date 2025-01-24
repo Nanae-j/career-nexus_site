@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
 import clsx from "clsx";
+import Image from "next/image";
 
 interface SvgIconProps {
   className?: string;
@@ -18,7 +19,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
           : ""
       )}
     >
-      <svg
+      {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 1218 1201"
@@ -112,7 +113,27 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
             ></feGaussianBlur>
           </filter>
         </defs>
-      </svg>
+      </svg> */}
+      <Image
+        src="/images/logo-vector-normal.png"
+        alt=""
+        width={1230}
+        height={1225}
+        className={clsx(
+          "logo-vector-normal",
+          "absolute h-[150vh] w-full object-contain absolute-center"
+        )}
+      />
+      <Image
+        src="/images/logo-vector-change.png"
+        alt=""
+        width={1230}
+        height={1225}
+        className={clsx(
+          "logo-vector-change",
+          "absolute h-[150vh] w-full object-contain absolute-center"
+        )}
+      />
     </div>
   )
 );
