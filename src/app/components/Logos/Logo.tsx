@@ -15,7 +15,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
       className={clsx(
         className,
         className == "fv-logo"
-          ? "absolute left-1/2 z-[1] w-full -translate-x-1/2"
+          ? "absolute left-1/2 z-[1] h-[150vh] w-full -translate-x-1/2 overflow-hidden"
           : ""
       )}
     >
@@ -119,9 +119,10 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         alt=""
         width={1230}
         height={1225}
+        priority
         className={clsx(
           "logo-vector-normal",
-          "absolute h-[150vh] w-full object-contain absolute-center"
+          "absolute h-full w-full object-contain absolute-center"
         )}
       />
       <Image
@@ -129,9 +130,10 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         alt=""
         width={1230}
         height={1225}
+        priority
         className={clsx(
           "logo-vector-change",
-          "absolute h-[150vh] w-full object-contain absolute-center"
+          "absolute h-full w-full object-contain absolute-center"
         )}
       />
     </div>
