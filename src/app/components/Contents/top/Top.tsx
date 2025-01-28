@@ -142,31 +142,37 @@ export default function Top({ news, members }: Props) {
 
           FV_scrollTL.to(".fv-logo", {
             scale: small ? 1 : 0.63,
-          })
-            .to(
-              ".fv-logo #out-side-path",
-              {
-                fill: "#9AD5CD",
-                fillOpacity: "0.2",
-              },
-              "<"
-            )
-            .to(
-              ".fv-logo #middle-path",
-              {
-                fill: "#B4D0A9",
-                fillOpacity: "0.2",
-              },
-              "<"
-            )
-            .to(
-              ".fv-logo #inside-path",
-              {
-                fill: "#F8FFAA",
-                fillOpacity: 0.18,
-              },
-              "<"
-            );
+          }).to(
+            ".logo-vector-normal",
+            {
+              opacity: 0,
+            },
+            "<"
+          );
+          // .to(
+          //   ".fv-logo #out-side-path",
+          //   {
+          //     fill: "#9AD5CD",
+          //     fillOpacity: "0.2",
+          //   },
+          //   "<"
+          // )
+          // .to(
+          //   ".fv-logo #middle-path",
+          //   {
+          //     fill: "#B4D0A9",
+          //     fillOpacity: "0.2",
+          //   },
+          //   "<"
+          // )
+          // .to(
+          //   ".fv-logo #inside-path",
+          //   {
+          //     fill: "#F8FFAA",
+          //     fillOpacity: 0.18,
+          //   },
+          //   "<"
+          // );
           // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
         }
       }

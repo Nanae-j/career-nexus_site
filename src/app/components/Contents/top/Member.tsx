@@ -10,7 +10,7 @@ import gsap from "gsap";
 
 import RollText from "../../utils/RollText";
 // import { members } from "../../utils/MemberList";
-import Logo from "../../Logos/Logo";
+// import Logo from "../../Logos/Logo";
 import Button from "../../utils/Button";
 import { MemberType } from "@/app/_libs/microcms";
 
@@ -172,7 +172,13 @@ const Member = forwardRef<HTMLElement, MemberProps>(({ members }, ref) => {
               "md:-left-[10%] md:-top-[10%] md:bottom-auto md:w-[67%]"
             )}
           >
-            <Logo className="member-logo" />
+            {/* <Logo className="member-logo" /> */}
+            <Image
+              src="/images/logo-vector-member.png"
+              alt=""
+              width={1230}
+              height={1225}
+            />
           </div>
           <div
             className={clsx(
