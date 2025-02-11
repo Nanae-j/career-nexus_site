@@ -34,6 +34,7 @@
 <div>
   <!-- 使用ライブラリ -->
   <p><a href="https://gsap.com/">GSAP</a></p>
+  <p><a href="https://lottiefiles.com/jp/">lottie-react</a></p>
   <p><a href="https://lenis.darkroom.engineering/">lenis</a></p>
   <p><a href="https://github.com/microcmsio/microcms-js-sdk?tab=readme-ov-file">microcms-js-sdk</a></p>
   <p><a href="https://www.react-hook-form.com/">react-hook-form</a></p>
