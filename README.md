@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div id="top"></div>
 
-## Getting Started
+## 使用技術一覧
 
-First, run the development server:
+<div style="display: inline">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  <!-- フロントエンドのフレームワーク一覧 -->
+  <img src="https://img.shields.io/badge/-Node.js-000000.svg?logo=node.js&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Next.js-blue.svg?logo=next.js&style=for-the-badge">
+  <!-- フロントエンドの言語 -->
+  <img src="https://img.shields.io/badge/-Typescript-FFF.svg?logo=typescript&style=for-the-badge">
+  <!-- ミドルウェア -->
+  <img src="https://img.shields.io/badge/-microCMS-563bff.svg?logo=microcms&style=for-the-badge">
+
+</div>
+
+#### 使用ライブラリ
+<div>
+  <!-- 使用ライブラリ -->
+  <p></p>
+</div>
+
+
+## 目次
+
+1. [プロジェクトについて](#プロジェクトについて)
+2. [環境](#環境)
+3. [ディレクトリ構成](#ディレクトリ構成)
+4. [開発環境構築](#開発環境構築)
+
+
+<!-- プロジェクトの概要を記載 -->
+
+## プロジェクトについて
+
+
+<p align="right">(<a href="#top">トップへ</a>)</p>
+
+
+
+<!-- プロジェクトの環境を記載 -->
+
+## 環境
+
+<!-- 言語、フレームワーク、ミドルウェア、インフラの一覧とバージョンを記載 -->
+
+| 言語・フレームワーク  | バージョン |
+| --------------------- | ---------- |
+| Node.js               | 18.20.4    |
+| Next.js               | 14.2.0    |
+| React                 | 18.3.1     |
+
+その他のパッケージのバージョンは package.json を参照してください
+
+<p align="right">(<a href="#top">トップへ</a>)</p>
+
+
+## ディレクトリ構成
+
+```
+.
+├── .env
+├── .gitignore
+├── README.md
+├── package-lock.json
+├── package.json
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── Calendar.css
+│   ├── components
+│   │   ├── Calendar.tsx
+│   │   ├── DailySummary.tsx
+│   │   ├── MonthlySummary.tsx
+│   │   ├── TransactionForm.tsx
+│   │   ├── TransactionMenu.tsx
+│   │   ├── common
+│   │   └── layout
+│   ├── firebase.ts
+│   ├── index.css
+│   ├── index.tsx
+│   ├── pages
+│   │   ├── Home.tsx
+│   │   ├── NoMatch.tsx
+│   │   └── Report.tsx
+│   ├── theme
+│   │   └── theme.ts
+│   ├── types
+│   │   └── index.ts
+│   └── utils
+│       ├── financeCalculations.ts
+│       └── formatting.ts
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ 補足
+```
+├── components
+│   ├── common - 複数のファイルで呼び出す汎用コンポーネント
+│   └── layout - アプリ全体のレイアウト
+├── pages
+├── theme - MUIテーマの拡張
+├── types - アプリ全体で使用する型定義
+└── utils - アプリ全体で使用する汎用関数
+               ├── financeCalculations.ts - 収支計算に関する関数
+               └── formatting.ts - 日付や金額のデータをフォーマットする関数
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<p align="right">(<a href="#top">トップへ</a>)</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 開発環境構築
 
-To learn more about Next.js, take a look at the following resources:
+In the project directory, you can run:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### `npm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### .env ファイルを作成 (.env-sampleあり)
 
-## Deploy on Vercel
+以下の環境変数の一覧を元に作成
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+### 環境変数の一覧
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 変数名                 | 役割                                   
+| ----------------------| ----------------------------------------------------------------
+| FIREBASE_API_KEY      | household-typescriptプロジェクトのAPIキー(収支コレクションの取得に使用)
+
+```
+
+### 動作確認
+
+#### `npm run dev`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+<p align="right">(<a href="#top">トップへ</a>)</p>
+
