@@ -5,12 +5,27 @@
 <div style="display: inline">
 
   <!-- フロントエンドのフレームワーク一覧 -->
+  <a href="https://nodejs.org/ja">
   <img src="https://img.shields.io/badge/-Node.js-000000.svg?logo=node.js&style=for-the-badge">
+  </a>
+  <a href="https://nextjs.org/">
   <img src="https://img.shields.io/badge/-Next.js-blue.svg?logo=next.js&style=for-the-badge">
+  </a>
   <!-- フロントエンドの言語 -->
+  <a href="http://ja.react.dev/">
+  <img src="https://img.shields.io/badge/-React-23272f.svg?logo=react&style=for-the-badge">
+  </a>
+  <a href="https://www.typescriptlang.org/">
   <img src="https://img.shields.io/badge/-Typescript-FFF.svg?logo=typescript&style=for-the-badge">
+  </a>
+  
   <!-- ミドルウェア -->
+  <a href="https://microcms.io/">
   <img src="https://img.shields.io/badge/-microCMS-563bff.svg?logo=microcms&style=for-the-badge">
+  </a>
+  <a href="https://www.hubspot.jp/">
+ <img src="https://img.shields.io/badge/-Hubspot-gray.svg?logo=hubspot&style=for-the-badge">
+  </a>
 
 </div>
 
