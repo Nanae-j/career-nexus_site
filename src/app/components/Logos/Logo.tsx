@@ -28,7 +28,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         priority
         className={clsx(
           "logo-vector-normal",
-          "absolute h-full w-full max-w-[1000px] object-contain absolute-center"
+          "absolute h-full w-full max-w-[1500px] object-contain absolute-center"
         )}
       />
       <Image
@@ -39,7 +39,7 @@ const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         sizes="(max-width: 768px) 50vw, 25vw"
         className={clsx(
           "logo-vector-change",
-          "absolute h-full w-full max-w-[1000px] object-contain absolute-center"
+          "absolute h-full w-full max-w-[1500px] object-contain absolute-center"
         )}
       />
     </div>
