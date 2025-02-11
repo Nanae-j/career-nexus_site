@@ -7,8 +7,10 @@ import { useGSAP } from "@gsap/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
 import openingAnime from "../../../../../public/images/opening.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
