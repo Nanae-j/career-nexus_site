@@ -8,9 +8,9 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import clsx from "clsx";
 // import Lottie from "lottie-react";
-import openingAnime from "../../../../../public/images/opening.json";
-import dynamic from "next/dynamic";
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+// import openingAnime from "../../../../../public/images/opening.json";
+// import dynamic from "next/dynamic";
+// const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
@@ -34,8 +34,8 @@ export default function Top({ news, members }: Props) {
   const [windowHeight, setWindowHeight] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isLottieRendered, setIsLottieRendered] = useState(false);
-  const [isRendered, setIsRendered] = useState(false);
+  // const [isLottieRendered, setIsLottieRendered] = useState(false);
+  // const [isRendered, setIsRendered] = useState(false);
   // const [isCompleteOpening, setIsCompleteOpening] = useState(false);
 
   useEffect(() => {
@@ -59,118 +59,122 @@ export default function Top({ news, members }: Props) {
     // Lenisのプラグイン登録(gsapのscrollTriggerと連携)
     // *******
 
-    setIsLottieRendered(true);
-    setIsRendered(true);
+    // setIsLottieRendered(true);
+    // setIsRendered(true);
   }, []);
 
   useGSAP(() => {
-    if (isRendered) {
-      const mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
-      mm.add(
-        {
-          small: "(max-width: 768px)",
-          large: "(min-width: 769px)",
-        },
-        (ctx) => {
-          if (ctx.conditions) {
-            const { small } = ctx.conditions;
+    mm.add(
+      {
+        small: "(max-width: 768px)",
+        large: "(min-width: 769px)",
+      },
+      (ctx) => {
+        if (ctx.conditions) {
+          const { small } = ctx.conditions;
 
-            // **** イントロアニメーション ****
-            const WORD_ANIMATE_RANGE = 30;
-            const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
+          // **** イントロアニメーション ****
+          const WORD_ANIMATE_RANGE = 30;
+          const COLORS = ["#2E98A4", "#D53DFB", "#F8FFAA"];
 
-            const randomValue = () =>
-              gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
+          const randomValue = () =>
+            gsap.utils.random(-WORD_ANIMATE_RANGE, WORD_ANIMATE_RANGE, 1);
 
-            const INTRO_TL = gsap.timeline();
+          const INTRO_TL = gsap.timeline();
 
-            INTRO_TL.set(".content-wrapper", {
-              opacity: 1,
+          INTRO_TL.set(".content-wrapper", {
+            opacity: 1,
+          })
+            .set(".fv-heading-word > span", {
+              x: randomValue,
+              y: randomValue,
+              rotation: randomValue,
+              filter: "blur(5px)",
+              opacity: 0,
+              color: () => gsap.utils.random(COLORS),
             })
-              .set(".fv-heading-word > span", {
-                x: randomValue,
-                y: randomValue,
-                rotation: randomValue,
-                filter: "blur(5px)",
-                opacity: 0,
-                color: () => gsap.utils.random(COLORS),
-              })
-              .to(".opening-div", {
-                opacity: 0,
-                pointerEvents: "none",
-                delay: 3, // 3秒後にアニメーションが開始される
-              })
-              .to(".fv-heading-word > span", {
-                x: 0,
-                y: 0,
-                rotation: 0,
-                delay: 0.3,
-                duration: 1.2,
-                ease: "power1.out",
+            .to(".opening-text", {
+              opacity: 1,
+              duration: 0.5,
+              ease: "expo.in",
+            })
+            .to(".opening-div", {
+              opacity: 0,
+              duration: 0.5,
+              ease: "expo.in",
+              delay: 0.5,
+            })
+            .to(".fv-heading-word > span", {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              delay: 0.8,
+              duration: 1.2,
+              ease: "power1.out",
+              stagger: 0.03,
+            })
+            .to(
+              ".fv-heading-word > span",
+              {
+                opacity: 1,
+                filter: "blur(0px)",
+                color: "#fff",
+                duration: 1.8,
+                ease: "sine.out",
                 stagger: 0.03,
-              })
-              .to(
-                ".fv-heading-word > span",
-                {
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  color: "#fff",
-                  duration: 1.8,
-                  ease: "sine.out",
-                  stagger: 0.03,
-                },
-                "<"
-              )
-              .from(".header", {
-                y: -10,
-                opacity: 0,
-                duration: 0.5,
-                ease: "power4.out",
-              })
-              .from(
-                ".header-inner",
-                {
-                  opacity: 0,
-                },
-                "-=0.2"
-              )
-              .from(
-                ".sp-contact-button",
-                {
-                  opacity: 0,
-                  duration: 1,
-                  ease: "power4.out",
-                },
-                "-=0.2"
-              );
-            // **** イントロアニメーション ****
-
-            // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
-            const FV_scrollTL = gsap.timeline({
-              scrollTrigger: {
-                trigger: ".fv-section",
-                start: "top top",
-                end: "bottom top",
-                scrub: 1.5,
               },
-            });
-
-            FV_scrollTL.to(".fv-logo", {
-              scale: small ? 1 : 0.63,
-            }).to(
-              ".logo-vector-normal",
+              "<"
+            )
+            .from(".header", {
+              y: -10,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power4.out",
+            })
+            .from(
+              ".header-inner",
               {
                 opacity: 0,
               },
-              "<"
+              "-=0.2"
+            )
+            .from(
+              ".sp-contact-button",
+              {
+                opacity: 0,
+                duration: 1,
+                ease: "power4.out",
+              },
+              "-=0.2"
             );
-            // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
-          }
+          // **** イントロアニメーション ****
+
+          // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
+          const FV_scrollTL = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".fv-section",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1.5,
+            },
+          });
+
+          FV_scrollTL.to(".fv-logo", {
+            scale: small ? 1 : 0.63,
+          }).to(
+            ".logo-vector-normal",
+            {
+              opacity: 0,
+            },
+            "<"
+          );
+          // **** FVからスクロールでロゴのスケールとカラーチェンジ ****
         }
-      );
-    }
-  }, [isRendered]);
+      }
+    );
+  }, []);
 
   useGSAP(
     (context, contextSafe) => {
@@ -311,21 +315,18 @@ export default function Top({ news, members }: Props) {
       <div
         className={clsx(
           "opening-div",
-          "fixed left-0 top-0 z-[1000] h-full w-full bg-main-black"
+          "pointer-events-none fixed left-0 top-0 z-[1000] h-full w-full bg-main-black"
         )}
       >
-        {isLottieRendered && (
-          <p
-            className={clsx(
-              "opening-text",
-              "absolute font-mundial text-[min(7.47vw,3rem)] font-mundial-demibold text-white absolute-center",
-              "lg:text-[2.5rem]"
-            )}
-          >
-            Career Nexus
-          </p>
-        )}
-        <Lottie animationData={openingAnime} className="h-full" />
+        <p
+          className={clsx(
+            "opening-text",
+            "absolute font-mundial text-[min(7.47vw,3rem)] font-mundial-demibold text-white opacity-0 absolute-center",
+            "lg:text-[2.5rem]"
+          )}
+        >
+          Career Nexus
+        </p>
       </div>
       <div className={clsx("content-wrapper", "opacity-0")}>
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
