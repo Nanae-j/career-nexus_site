@@ -318,6 +318,7 @@ export default function Top({ news, members }: Props) {
           "pointer-events-none fixed left-0 top-0 z-[1000] h-full w-full bg-main-black"
         )}
       >
+        <div className="absolute left-1/2 top-0 z-[2] h-screen w-full -translate-x-1/2 bg-[url('/images/noise.png')] opacity-10"></div>
         <p
           className={clsx(
             "opening-text",
