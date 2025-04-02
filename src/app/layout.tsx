@@ -4,8 +4,21 @@ import "./globals.css";
 import AdobeFont from "./components/utils/AdobeFont";
 
 export const metadata: Metadata = {
-  title: "Career Nexus",
-  description: "- 架空のコーポレートサイト",
+  metadataBase: new URL("https://career-nexus-site.vercel.app/"),
+  title: {
+    template: "%s | Career Nexus",
+    default: "Career Nexus",
+  },
+  description:
+    "Career Nexusは、企業と人材をつなぐプロフェッショナルな派遣サービスを提供する企業です。私たちは、業界に特化した専門的なスキルを持つ人材を厳選し、お客様のニーズに最適なソリューションを提案します。柔軟で効率的な人材派遣を通じて、企業の成長を支援し、スタッフ一人ひとりのキャリアアップにも貢献しています。信頼と実績のあるサービスを提供し、企業と人材の双方にとって価値あるパートナーシップを築きます。",
+  openGraph: {
+    title: "Career Nexus",
+    description:
+      "Career Nexusは、企業と人材をつなぐプロフェッショナルな派遣サービスを提供する企業です。私たちは、業界に特化した専門的なスキルを持つ人材を厳選し、お客様のニーズに最適なソリューションを提案します。柔軟で効率的な人材派遣を通じて、企業の成長を支援し、スタッフ一人ひとりのキャリアアップにも貢献しています。信頼と実績のあるサービスを提供し、企業と人材の双方にとって価値あるパートナーシップを築きます。",
+    url: "https://career-nexus-site.vercel.app/",
+    siteName: "Career Nexus",
+    images: "/og-image.jpg",
+  },
 };
 
 export default function RootLayout({

@@ -4,8 +4,13 @@ import LowerTitle from "../components/utils/LowerTitle";
 import BreadCrumb from "../components/utils/BreadCrumb";
 import Image from "next/image";
 import clsx from "clsx";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Member",
+};
 
 export default async function Page() {
   const { contents: members } = await getMembersList();

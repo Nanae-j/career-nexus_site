@@ -5,6 +5,12 @@ import GoogleMap from "../components/Contents/about/GoogleMap";
 import clsx from "clsx";
 import Transition from "../components/utils/Transition";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+};
+
 export default function Page() {
   return (
     <Transition>

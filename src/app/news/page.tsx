@@ -6,6 +6,12 @@ import BreadCrumb from "../components/utils/BreadCrumb";
 
 export const revalidate = 60;
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "News",
+};
+
 export default async function Page() {
   const { contents: news } = await getNewsList();
 

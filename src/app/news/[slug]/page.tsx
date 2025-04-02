@@ -6,9 +6,21 @@ import Date from "@/app/components/utils/Date";
 import Category from "@/app/components/Contents/news/Category";
 import NewsContent from "@/app/components/Contents/news/NewsContent";
 import Image from "next/image";
+import type { Metadata } from "next";
+
 interface Props {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const { slug } = await params;
+  const data = await getNewsDetail(slug);
+
+  return {
+    title: data.title,
   };
 }
 

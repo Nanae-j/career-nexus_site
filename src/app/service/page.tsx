@@ -6,6 +6,12 @@ import ReceptionistSVG from "../components/utils/ReceptionistSVG";
 import FaceTimeSVG from "../components/utils/FaceTimeSVG";
 import ServiceQA from "../components/Contents/service/ServiceQA";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Service",
+};
+
 export default async function Page() {
   return (
     <Sheet>
