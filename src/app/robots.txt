@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://career-nexus-site.vercel.app/sitemap.xml
